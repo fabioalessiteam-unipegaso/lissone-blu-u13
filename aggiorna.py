@@ -46,7 +46,7 @@ def leggi_pdf(percorso):
     with pdfplumber.open(percorso) as pdf:
         for pagina in pdf.pages:
             W = pagina.width
-            x_num, x_b, x_dx = W * 0.16, W * 0.45, W * 0.80
+            x_num, x_b, x_dx = W * 0.10, W * 0.45, W * 0.80
             parole = pagina.extract_words()
             righe = {}
             for w in parole:
