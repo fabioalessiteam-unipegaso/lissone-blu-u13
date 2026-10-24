@@ -161,6 +161,13 @@ html.js .gblock[hidden]{display:none}
 .icsone{margin-left:auto;background:none;border:1px solid var(--line);border-radius:8px;padding:2px 8px;font-size:14px;line-height:1.4;cursor:pointer;color:inherit}
 .icsone:focus-visible{outline:3px solid var(--court);outline-offset:1px}
 @media print{.icsone{display:none}}
+.train{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 18px}
+.train h3{margin:0 0 8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px}
+.train ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.train li{display:flex;gap:8px;font-size:14.5px}
+.train li b{flex:none;width:38px;color:var(--blue)}
+:root[data-theme="dark"] .train li b{color:#8fb0ff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .train li b{color:#8fb0ff}}
 </style>
 </head>
 <body>
@@ -185,6 +192,15 @@ html.js .gblock[hidden]{display:none}
       <div class="stat"><b id="sP">0</b><span>Perse</span></div>
       <div class="stat"><b id="sF">0</b><span>Punti fatti</span></div>
       <div class="stat"><b id="sS">0</b><span>Punti subiti</span></div>
+    </section>
+    <section class="train" aria-label="Allenamenti">
+      <h3>Allenamenti</h3>
+      <ul>
+        <li><b>Lun</b> 17:00–18:30 · Pal. Nuovo</li>
+        <li><b>Mar</b> 19:15–21:00 · Preparazione e basket · Enriques</li>
+        <li><b>Gio</b> 20:00–21:30 · Enriques</li>
+        <li><b>Sab</b> 10:00–11:30 · Farè</li>
+      </ul>
     </section>
     <div class="editbar"><button type="button" class="btn alt" id="icsBtn">📅 Aggiungi al calendario (.ics)</button></div>
     <section class="list" id="list" aria-label="Partite"></section>
