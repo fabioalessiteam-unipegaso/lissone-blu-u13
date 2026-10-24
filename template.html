@@ -169,6 +169,7 @@ html.js .gblock[hidden]{display:none}
 .icsone{margin-left:auto;background:none;border:1px solid var(--line);border-radius:8px;padding:2px 8px;font-size:14px;line-height:1.4;cursor:pointer;color:inherit}
 .icsone:focus-visible{outline:3px solid var(--court);outline-offset:1px}
 @media print{.icsone{display:none}}
+@media print{.visits{display:none}}
 .train{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 18px}
 .train h3{margin:0 0 8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px}
 .train ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
@@ -188,6 +189,7 @@ html.js .gblock[hidden]{display:none}
     </div>
   </header>
   <p class="upd" id="upd"></p>
+  <p class="upd visits">Visite: <img src="https://visitor-badge.laobi.icu/badge?page_id=fabioalessiteam-unipegaso.lissone-blu-u13" alt="contatore visite" style="vertical-align:middle;height:16px"></p>
 
   <nav class="tabs" aria-label="Sezioni">
     <a href="#calendario" id="t-cal" aria-current="true">Calendario Blu</a>
@@ -322,6 +324,7 @@ function matchCard(g,opts){
         ${opts.next?'<span class="nextflag">Prossima</span>':''}
         ${badge}
         ${opts.blu&&!done&&g.d?`<button type="button" class="icsone" data-gara="${g.n}" title="Aggiungi questa partita al calendario" aria-label="Aggiungi questa partita al calendario">📅</button>`:''}
+        ${opts.blu&&g.n?`<button type="button" class="icsone share" data-gara="${g.n}" title="Condividi" aria-label="Condividi">📤</button>`:''}
       </div>
       ${g.n?`<div class="foot" style="margin-top:2px"><span>Gara ${g.n}</span></div>`:''}
     </div>`;
@@ -377,7 +380,27 @@ document.getElementById('icsBtn').addEventListener('click',()=>{
   downloadText(icsCalendar(eventLines),'calendario-lissone-blu-u13.ics');
 });
 document.getElementById('pdfBtn').addEventListener('click',()=>window.print());
+function buildShareText(g){
+  const opp=g.a==='LISSONE BLU'?g.b:g.a, casa=venue(g)===CASA, v=venue(g);
+  if(played(g)){
+    const us=g.a==='LISSONE BLU'?g.pa:g.pb, them=g.a==='LISSONE BLU'?g.pb:g.pa;
+    const esito=us>them?'Vinta':(us<them?'Persa':'Pari');
+    return `🏀 Lissone Blu - ${opp}: ${us}-${them} (${esito})\n${location.href}`;
+  }
+  const dt=g.d?when(g):null;
+  const dataStr=dt?`${DOW[dt.getDay()]} ${dt.getDate()} ${MON[dt.getMonth()]}`:'';
+  return `🏀 Lissone Blu - ${opp}\n${dataStr}${g.t?' ore '+g.t:''} · ${casa?'Casa':'Trasferta'}${v?' · '+v:''}\n${location.href}`;
+}
 list.addEventListener('click',e=>{
+  const sh=e.target.closest('.share');
+  if(sh){
+    const g=blu.find(x=>String(x.n)===sh.dataset.gara);
+    if(!g)return;
+    const text=buildShareText(g);
+    if(navigator.share)navigator.share({text}).catch(()=>{});
+    else window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
+    return;
+  }
   const btn=e.target.closest('.icsone');
   if(!btn)return;
   const g=blu.find(x=>String(x.n)===btn.dataset.gara);
@@ -450,6 +473,7 @@ function show(which){
 Object.keys(TABS).forEach(k=>TABS[k].addEventListener('click',e=>{e.preventDefault();show(k)}));
 show(location.hash.replace('#','')||'calendario');
 showG(curG);
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body>
 </html>
