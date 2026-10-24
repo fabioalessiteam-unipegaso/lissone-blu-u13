@@ -1690,6 +1690,22 @@ document.getElementById('gprev').addEventListener('click',()=>showG(curG-1));
 document.getElementById('gnext').addEventListener('click',()=>showG(curG+1));
 document.getElementById('src').textContent='Fonte: FIP · Under 13 Maschile Regionale, Qualificazione'+(AGGIORNATO?' · aggiornato al '+AGGIORNATO:'');
 document.getElementById('upd').textContent=AGGIORNATO?('Ultimo aggiornamento: '+AGGIORNATO):'';
+(function(){
+  if(!AGGIORNATO)return;
+  const m=AGGIORNATO.match(/^(\d+)\s+(\S+)\s+(\d+),\s+(\d+):(\d+)/);
+  if(!m)return;
+  const mese=MESI.indexOf(m[2]);
+  if(mese<0)return;
+  const dt=new Date(+m[3],mese,+m[1],+m[4],+m[5]);
+  const giorni=Math.floor((Date.now()-dt.getTime())/864e5);
+  if(giorni>=2){
+    const p=document.createElement('p');
+    p.className='upd';
+    p.style.cssText='color:var(--loss);font-weight:600';
+    p.textContent=`⚠️ Nessun aggiornamento da ${giorni} giorni: potrebbe esserci un problema, controlla su GitHub (Actions).`;
+    document.getElementById('upd').insertAdjacentElement('afterend',p);
+  }
+})();
 
 /* ---------- Schede ---------- */
 document.documentElement.classList.add('js');
