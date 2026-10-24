@@ -109,7 +109,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:'Barlow',system-
 .score.ro{display:flex;align-items:center;justify-content:center}
 .crest.ro{cursor:default}
 .upd{margin:10px 2px 0;font-size:13.5px;color:var(--muted)}
-.editbar{margin:12px 0 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.editbar{margin:12px 0 20px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .editbar:empty{display:none}
 .btn{font:600 15px 'Barlow',sans-serif;border:0;border-radius:10px;padding:10px 16px;cursor:pointer;background:var(--blue);color:#fff}
 .btn.alt{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
@@ -187,7 +187,6 @@ html.js .gblock[hidden]{display:none}
     </div>
   </header>
   <p class="upd" id="upd">Ultimo aggiornamento: 24 ottobre 2026, 15:10</p>
-  <p class="upd visits">Visite: <span id="visitsBox"></span></p>
 
   <nav class="tabs" aria-label="Sezioni">
     <a href="#calendario" id="t-cal" aria-current="true">Calendario Blu</a>
@@ -1136,6 +1135,8 @@ html.js .gblock[hidden]{display:none}
       </ul>
     </section>
   </section>
+
+  <p class="upd visits" style="text-align:center;margin-top:28px">Visite: <span id="visitsBox"></span></p>
 </main>
 
 <script>
