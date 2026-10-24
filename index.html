@@ -182,6 +182,7 @@ html.js .gblock[hidden]{display:none}
   <nav class="tabs" aria-label="Sezioni">
     <a href="#calendario" id="t-cal" aria-current="true">Calendario Blu</a>
     <a href="#girone" id="t-gir" aria-current="false">Girone</a>
+    <a href="#allenamenti" id="t-tra" aria-current="false">Allenamenti</a>
   </nav>
 
   <section class="view" id="calendario">
@@ -190,15 +191,6 @@ html.js .gblock[hidden]{display:none}
       <div class="stat"><b id="sP">0</b><span>Perse</span></div>
       <div class="stat"><b id="sF">56</b><span>Punti fatti</span></div>
       <div class="stat"><b id="sS">40</b><span>Punti subiti</span></div>
-    </section>
-    <section class="train" aria-label="Allenamenti">
-      <h3>Allenamenti</h3>
-      <ul>
-        <li><b>Lun</b> 17:00–18:30 · Palazzetto di Lissone</li>
-        <li><b>Mar</b> 19:15–21:00 · Palestra Enriques</li>
-        <li><b>Gio</b> 20:00–21:30 · Palestra Enriques</li>
-        <li><b>Sab</b> 10:00–11:30 · Palestra Farè</li>
-      </ul>
     </section>
     <div class="editbar"><button type="button" class="btn alt" id="icsBtn">📅 Aggiungi al calendario (.ics)</button></div>
     <section class="list" id="list" aria-label="Partite"><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">18</span><span class="mon">ott</span><span class="time">16:00</span></div>
@@ -1077,6 +1069,19 @@ html.js .gblock[hidden]{display:none}
     </div></article></div></div></div>
     <p class="src" id="src">Fonte: FIP · Under 13 Maschile Regionale, Qualificazione · aggiornato al 24 ottobre 2026, 15:10</p>
   </section>
+
+  <section class="view" id="allenamenti">
+    <h2>Allenamenti</h2>
+    <p class="sub">Orari confermati · Stagione 2026/27</p>
+    <section class="train" aria-label="Allenamenti">
+      <ul>
+        <li><b>Lun</b> 17:00–18:30 · <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzetto%20n.%201639%20Via%20Caravaggio%2C%20Lissone" target="_blank" rel="noopener">Palazzetto di Lissone</a></li>
+        <li><b>Mar</b> 19:15–21:00 · <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20Enriques%2C%20Lissone" target="_blank" rel="noopener">Palestra Enriques</a></li>
+        <li><b>Gio</b> 20:00–21:30 · <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20Enriques%2C%20Lissone" target="_blank" rel="noopener">Palestra Enriques</a></li>
+        <li><b>Sab</b> 10:00–11:30 · <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20Far%C3%A8%2C%20Lissone" target="_blank" rel="noopener">Palestra Farè</a></li>
+      </ul>
+    </section>
+  </section>
 </main>
 
 <script>
@@ -1611,16 +1616,14 @@ document.getElementById('upd').textContent=AGGIORNATO?('Ultimo aggiornamento: '+
 
 /* ---------- Schede ---------- */
 document.documentElement.classList.add('js');
-const vCal=document.getElementById('calendario'), vGir=document.getElementById('girone');
-const tCal=document.getElementById('t-cal'), tGir=document.getElementById('t-gir');
+const VIEWS={calendario:document.getElementById('calendario'),girone:document.getElementById('girone'),allenamenti:document.getElementById('allenamenti')};
+const TABS={calendario:document.getElementById('t-cal'),girone:document.getElementById('t-gir'),allenamenti:document.getElementById('t-tra')};
 function show(which){
-  const gir=which==='girone';
-  vCal.hidden=gir; vGir.hidden=!gir;
-  tCal.setAttribute('aria-current',String(!gir)); tGir.setAttribute('aria-current',String(gir));
+  if(!VIEWS[which])which='calendario';
+  for(const k in VIEWS){VIEWS[k].hidden=(k!==which);TABS[k].setAttribute('aria-current',String(k===which))}
 }
-tCal.addEventListener('click',e=>{e.preventDefault();show('calendario')});
-tGir.addEventListener('click',e=>{e.preventDefault();show('girone')});
-show(location.hash==='#girone'?'girone':'calendario');
+Object.keys(TABS).forEach(k=>TABS[k].addEventListener('click',e=>{e.preventDefault();show(k)}));
+show(location.hash.replace('#','')||'calendario');
 showG(curG);
 </script>
 
