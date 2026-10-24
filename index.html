@@ -200,7 +200,10 @@ html.js .gblock[hidden]{display:none}
       <div class="stat"><b id="sF">56</b><span>Punti fatti</span></div>
       <div class="stat"><b id="sS">40</b><span>Punti subiti</span></div>
     </section>
-    <div class="editbar"><button type="button" class="btn alt" id="icsBtn">📅 Aggiungi al calendario (.ics)</button></div>
+    <div class="editbar">
+      <button type="button" class="btn alt" id="icsBtn">📅 Aggiungi al calendario (.ics)</button>
+      <button type="button" class="btn alt" id="pdfBtn">🖨️ Scarica PDF</button>
+    </div>
     <section class="list" id="list" aria-label="Partite"><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">18</span><span class="mon">ott</span><span class="time">16:00</span></div>
     <div class="body">
       
@@ -1560,6 +1563,7 @@ document.getElementById('icsBtn').addEventListener('click',()=>{
   const eventLines=blu.filter(g=>!played(g)&&g.d).flatMap((g,i)=>icsEvent(g,i));
   downloadText(icsCalendar(eventLines),'calendario-lissone-blu-u13.ics');
 });
+document.getElementById('pdfBtn').addEventListener('click',()=>window.print());
 list.addEventListener('click',e=>{
   const btn=e.target.closest('.icsone');
   if(!btn)return;
