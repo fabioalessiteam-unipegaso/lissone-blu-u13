@@ -37,11 +37,15 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:'Barlow',system-
 .wrap{max-width:640px;margin:0 auto;padding:20px 16px 40px}
 
 /* header */
-.hero{background:var(--blue);color:#fff;border-radius:18px;padding:22px 20px 18px;position:relative;overflow:hidden}
+.hero{background:var(--blue);color:#fff;border-radius:18px;padding:22px 20px 18px;position:relative;overflow:hidden;display:flex;align-items:center;gap:16px}
 .hero::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:3px solid rgba(255,255,255,.22)}
 .hero::before{content:"";position:absolute;right:-8px;top:-8px;width:70px;height:70px;border-radius:50%;border:3px solid rgba(255,255,255,.22)}
+.hero-logo{flex:none;width:64px;height:64px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.25);position:relative;z-index:1;padding:6px}
+.hero-logo img{width:100%;height:100%;object-fit:contain;display:block}
+.hero-text{position:relative;z-index:1;min-width:0}
 .hero h1{margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:44px;line-height:.95;letter-spacing:.005em}
 .hero p{margin:8px 0 0;font-size:15px;opacity:.9}
+@media (max-width:380px){.hero h1{font-size:36px}.hero-logo{width:52px;height:52px}}
 
 /* riepilogo */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 22px}
@@ -162,8 +166,11 @@ html.js .gblock[hidden]{display:none}
 <body>
 <main class="wrap">
   <header class="hero">
-    <h1>Pall. Lissone Blu</h1>
-    <p>U13 Maschile Regionale · Stagione 2026/27</p>
+    <div class="hero-logo"><img src="loghi/lissone-blu.png" alt="Stemma Lissone Blu"></div>
+    <div class="hero-text">
+      <h1>Pall. Lissone Blu</h1>
+      <p>U13 Maschile Regionale · Stagione 2026/27</p>
+    </div>
   </header>
   <p class="upd" id="upd"></p>
 
