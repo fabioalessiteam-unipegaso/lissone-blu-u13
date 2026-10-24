@@ -207,6 +207,7 @@ html.js .gblock[hidden]{display:none}
     <div class="editbar">
       <button type="button" class="btn alt" id="icsBtn">📅 Aggiungi al calendario (.ics)</button>
       <button type="button" class="btn alt" id="pdfBtn">🖨️ Scarica PDF</button>
+      <button type="button" class="btn alt" id="installBtn" hidden>📲 Installa l'app</button>
     </div>
     <section class="list" id="list" aria-label="Partite"></section>
   </section>
@@ -474,6 +475,32 @@ Object.keys(TABS).forEach(k=>TABS[k].addEventListener('click',e=>{e.preventDefau
 show(location.hash.replace('#','')||'calendario');
 showG(curG);
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+/* ---------- Installa come app ---------- */
+(function(){
+  const btn=document.getElementById('installBtn');
+  if(!btn)return;
+  const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+  const isStandalone=window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  let deferredPrompt=null;
+  window.addEventListener('beforeinstallprompt',e=>{
+    e.preventDefault();
+    deferredPrompt=e;
+    btn.hidden=false;
+  });
+  if(isIOS && !isStandalone)btn.hidden=false;
+  btn.addEventListener('click',async()=>{
+    if(deferredPrompt){
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt=null;
+      btn.hidden=true;
+    }else if(isIOS){
+      alert('Per installare: tocca il pulsante Condividi (il quadrato con la freccia in alto), poi "Aggiungi alla schermata Home".');
+    }
+  });
+  window.addEventListener('appinstalled',()=>{btn.hidden=true});
+})();
 
 /* ---------- Contatore visite (max 1 al giorno per dispositivo) ---------- */
 (function(){
