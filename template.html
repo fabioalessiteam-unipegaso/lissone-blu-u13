@@ -154,9 +154,6 @@ html.js .gblock[hidden]{display:none}
 .gblock + .gblock{margin-top:8px}
 @media print{html.js .gblock[hidden]{display:block}.gsel{display:none}}
 .foot a.maploc{color:inherit;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px}
-.next-wrap{margin:14px 0 22px}
-.next-wrap h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;margin:0 0 8px}
-@media print{.next-wrap{display:none}}
 </style>
 </head>
 <body>
@@ -178,10 +175,6 @@ html.js .gblock[hidden]{display:none}
       <div class="stat"><b id="sP">0</b><span>Perse</span></div>
       <div class="stat"><b id="sF">0</b><span>Punti fatti</span></div>
       <div class="stat"><b id="sS">0</b><span>Punti subiti</span></div>
-    </section>
-    <section class="next-wrap" id="nextWrap" hidden aria-label="Prossima partita">
-      <h3>Prossima partita</h3>
-      <div class="list" id="nextCard"></div>
     </section>
     <div class="editbar"><button type="button" class="btn alt" id="icsBtn">📅 Aggiungi al calendario (.ics)</button></div>
     <section class="list" id="list" aria-label="Partite"></section>
@@ -303,11 +296,6 @@ document.getElementById('sV').textContent=V;
 document.getElementById('sP').textContent=P;
 document.getElementById('sF').textContent=F;
 document.getElementById('sS').textContent=S;
-
-if(nextIdx>-1){
-  document.getElementById('nextWrap').hidden=false;
-  document.getElementById('nextCard').appendChild(matchCard(blu[nextIdx],{blu:true,next:true}));
-}
 
 /* ---------- Esportazione calendario (.ics) ---------- */
 function pad2(n){return String(n).padStart(2,'0')}
