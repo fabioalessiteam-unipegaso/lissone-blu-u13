@@ -189,7 +189,7 @@ html.js .gblock[hidden]{display:none}
     </div>
   </header>
   <p class="upd" id="upd"></p>
-  <p class="upd visits">Visite: <img src="https://visitor-badge.laobi.icu/badge?page_id=fabioalessiteam-unipegaso.lissone-blu-u13" alt="contatore visite" style="vertical-align:middle;height:16px"></p>
+  <p class="upd visits">Visite: <span id="visitsBox"></span></p>
 
   <nav class="tabs" aria-label="Sezioni">
     <a href="#calendario" id="t-cal" aria-current="true">Calendario Blu</a>
@@ -474,6 +474,27 @@ Object.keys(TABS).forEach(k=>TABS[k].addEventListener('click',e=>{e.preventDefau
 show(location.hash.replace('#','')||'calendario');
 showG(curG);
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+/* ---------- Contatore visite (max 1 al giorno per dispositivo) ---------- */
+(function(){
+  const box=document.getElementById('visitsBox');
+  if(!box)return;
+  const today=new Date().toISOString().slice(0,10);
+  const key='lissone-visit-'+today;
+  let counted=false;
+  try{ counted=localStorage.getItem(key)==='1'; }catch(e){}
+  if(counted){
+    box.textContent='conteggiata oggi ✓';
+  }else{
+    const img=document.createElement('img');
+    img.src='https://visitor-badge.laobi.icu/badge?page_id=fabioalessiteam-unipegaso.lissone-blu-u13';
+    img.alt='contatore visite';
+    img.style.verticalAlign='middle';
+    img.style.height='16px';
+    box.appendChild(img);
+    try{ localStorage.setItem(key,'1'); }catch(e){}
+  }
+})();
 </script>
 </body>
 </html>
