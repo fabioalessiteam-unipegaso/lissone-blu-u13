@@ -380,14 +380,34 @@ document.getElementById('sS').textContent=S;
       const p=geo && geo.results && geo.results[0];
       if(!p)return;
       const data=g.d;
-      return fetch('https://api.open-meteo.com/v1/forecast?latitude='+p.latitude+'&longitude='+p.longitude+'&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Europe%2FRome&start_date='+data+'&end_date='+data)
+      if(!g.t){
+        return fetch('https://api.open-meteo.com/v1/forecast?latitude='+p.latitude+'&longitude='+p.longitude+'&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Europe%2FRome&start_date='+data+'&end_date='+data)
+          .then(r=>r.json())
+          .then(f=>{
+            const d=f&&f.daily;
+            if(!d||!d.weathercode||d.weathercode[0]==null)return;
+            const desc=METEO[d.weathercode[0]]||'';
+            const tmax=Math.round(d.temperature_2m_max[0]), tmin=Math.round(d.temperature_2m_min[0]);
+            el.textContent=`Meteo a ${citta}: ${desc}, ${tmin}–${tmax}°C`;
+          });
+      }
+      return fetch('https://api.open-meteo.com/v1/forecast?latitude='+p.latitude+'&longitude='+p.longitude+'&hourly=temperature_2m,weathercode&timezone=Europe%2FRome&start_date='+data+'&end_date='+data)
         .then(r=>r.json())
         .then(f=>{
-          const d=f&&f.daily;
-          if(!d||!d.weathercode||d.weathercode[0]==null)return;
-          const desc=METEO[d.weathercode[0]]||'';
-          const tmax=Math.round(d.temperature_2m_max[0]), tmin=Math.round(d.temperature_2m_min[0]);
-          el.textContent=`Meteo a ${citta}: ${desc}, ${tmin}–${tmax}°C`;
+          const h=f&&f.hourly;
+          if(!h||!h.time)return;
+          const [oreStr,minStr]=g.t.split(':');
+          const oraInizio=+oreStr;
+          const fine=new Date(data+'T'+g.t+':00'); fine.setMinutes(fine.getMinutes()+90);
+          const oraFine=fine.getHours();
+          const idx=h.time.findIndex(t=>t===data+'T'+String(oraInizio).padStart(2,'0')+':00');
+          if(idx<0)return;
+          const idx2=h.time.findIndex(t=>t===data+'T'+String(oraFine).padStart(2,'0')+':00');
+          const t1=Math.round(h.temperature_2m[idx]);
+          const t2=idx2>=0?Math.round(h.temperature_2m[idx2]):t1;
+          const desc=METEO[h.weathercode[idx]]||'';
+          const tmin=Math.min(t1,t2), tmax=Math.max(t1,t2);
+          el.textContent=`Meteo a ${citta} alle ${g.t}: ${desc}, ${tmin===tmax?tmin+'°C':tmin+'–'+tmax+'°C'}`;
         });
     }).catch(()=>{});
 })();
