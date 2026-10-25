@@ -2,7 +2,7 @@ name: Aggiorna calendario e classifica
 
 on:
   schedule:
-    - cron: "0 18 * * *"       # tutti i giorni, una volta, verso le 19:00 (ora italiana; 20:00 nel periodo con ora legale)
+    - cron: "0 11,21 * * *"    # tutti i giorni, verso le 12:00 e le 22:00 (ora italiana; un'ora dopo nel periodo con ora legale)
   workflow_dispatch:           # pulsante "Run workflow" per aggiornare subito
 
 permissions:
