@@ -169,7 +169,6 @@ html.js .gblock[hidden]{display:none}
 .icsone{margin-left:auto;background:none;border:1px solid var(--line);border-radius:8px;padding:2px 8px;font-size:14px;line-height:1.4;cursor:pointer;color:inherit}
 .icsone:focus-visible{outline:3px solid var(--court);outline-offset:1px}
 @media print{.icsone{display:none}}
-@media print{.visits{display:none}}
 .train{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 18px}
 .train h3{margin:0 0 8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px}
 .train ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
@@ -240,7 +239,6 @@ html.js .gblock[hidden]{display:none}
     </section>
   </section>
 
-  <p class="upd visits" style="text-align:center;margin-top:28px">Visite: <span id="visitsBox"></span></p>
 </main>
 
 <script>
@@ -586,33 +584,6 @@ if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(
   window.addEventListener('appinstalled',()=>{btn.hidden=true});
 })();
 
-/* ---------- Contatore visite (max 1 al giorno per dispositivo) ---------- */
-(function(){
-  const box=document.getElementById('visitsBox');
-  if(!box)return;
-  const today=new Date().toISOString().slice(0,10);
-  const key='lissone-visit-'+today;
-  const badgeUrl='https://visitor-badge.laobi.icu/badge?page_id=fabioalessiteam-unipegaso.lissone-blu-u13';
-  let counted=false;
-  try{ counted=localStorage.getItem(key)==='1'; }catch(e){}
-  if(counted){
-    const a=document.createElement('a');
-    a.href=badgeUrl;
-    a.target='_blank';
-    a.rel='noopener';
-    a.className='maploc';
-    a.textContent='conteggiata oggi · vedi il totale';
-    box.appendChild(a);
-  }else{
-    const img=document.createElement('img');
-    img.src=badgeUrl;
-    img.alt='contatore visite';
-    img.style.verticalAlign='middle';
-    img.style.height='16px';
-    box.appendChild(img);
-    try{ localStorage.setItem(key,'1'); }catch(e){}
-  }
-})();
 </script>
 </body>
 </html>
