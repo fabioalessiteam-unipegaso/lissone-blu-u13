@@ -328,6 +328,7 @@ function matchCard(g,opts){
         ${opts.blu&&!done&&g.d?`<button type="button" class="icsone" data-gara="${g.n}" title="Aggiungi questa partita al calendario" aria-label="Aggiungi questa partita al calendario">📅</button>`:''}
         ${opts.blu&&g.n?`<button type="button" class="icsone share" data-gara="${g.n}" title="Condividi" aria-label="Condividi">📤</button>`:''}
       </div>
+      ${opts.next?`<div class="foot" style="margin-top:2px"><span class="meteo" id="meteo"></span></div>`:''}
       ${g.n?`<div class="foot" style="margin-top:2px"><span>Gara ${g.n}</span></div>`:''}
     </div>`;
   return el;
@@ -344,6 +345,52 @@ document.getElementById('sV').textContent=V;
 document.getElementById('sP').textContent=P;
 document.getElementById('sF').textContent=F;
 document.getElementById('sS').textContent=S;
+
+/* ---------- Meteo prossima partita ---------- */
+(function(){
+  if(nextIdx<0)return;
+  const g=blu[nextIdx];
+  if(!g||!g.d)return;
+  const giorni=(when(g)-today)/864e5;
+  if(giorni<0||giorni>15)return; // fuori dal range attendibile delle previsioni
+  const el=document.getElementById('meteo');
+  if(!el)return;
+  const homeGame=(venue(g)===CASA);
+  let citta='Lissone';
+  if(!homeGame){
+    let v=venue(g).replace(/\s*\([^)]*\)\s*$/,'').trim();
+    const parts=v.split(',');
+    if(parts.length>1){citta=parts[parts.length-1].trim();}
+    else{
+      const parole=v.split(/\s+/), out=[];
+      for(let i=parole.length-1;i>=0;i--){
+        if(/^[A-ZÀ-Ý.'-]+$/.test(parole[i]))out.unshift(parole[i]); else break;
+      }
+      citta=out.length?out.join(' '):parole[parole.length-1];
+    }
+  }
+  const METEO={0:'☀️ sereno',1:'🌤️ poco nuvoloso',2:'⛅ nuvoloso',3:'☁️ coperto',45:'🌫️ nebbia',48:'🌫️ nebbia',
+    51:'🌦️ pioviggine',53:'🌦️ pioviggine',55:'🌦️ pioviggine',61:'🌧️ pioggia debole',63:'🌧️ pioggia',65:'🌧️ pioggia forte',
+    66:'🌧️ pioggia gelata',67:'🌧️ pioggia gelata',71:'❄️ neve debole',73:'❄️ neve',75:'❄️ neve forte',77:'❄️ neve',
+    80:'🌦️ rovesci',81:'🌦️ rovesci',82:'⛈️ rovesci forti',85:'🌨️ rovesci di neve',86:'🌨️ rovesci di neve',
+    95:'⛈️ temporale',96:'⛈️ temporale',99:'⛈️ temporale'};
+  fetch('https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(citta)+'&count=1&language=it&country=IT')
+    .then(r=>r.json())
+    .then(geo=>{
+      const p=geo && geo.results && geo.results[0];
+      if(!p)return;
+      const data=g.d;
+      return fetch('https://api.open-meteo.com/v1/forecast?latitude='+p.latitude+'&longitude='+p.longitude+'&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Europe%2FRome&start_date='+data+'&end_date='+data)
+        .then(r=>r.json())
+        .then(f=>{
+          const d=f&&f.daily;
+          if(!d||!d.weathercode||d.weathercode[0]==null)return;
+          const desc=METEO[d.weathercode[0]]||'';
+          const tmax=Math.round(d.temperature_2m_max[0]), tmin=Math.round(d.temperature_2m_min[0]);
+          el.textContent=`Meteo a ${citta}: ${desc}, ${tmin}–${tmax}°C`;
+        });
+    }).catch(()=>{});
+})();
 
 /* ---------- Esportazione calendario (.ics) ---------- */
 function pad2(n){return String(n).padStart(2,'0')}
