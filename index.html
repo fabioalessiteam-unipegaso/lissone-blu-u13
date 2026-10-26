@@ -348,9 +348,9 @@ html.js .view[hidden] { display:none; }
   <section class="view" id="calendario">
     <section class="stats" aria-label="Riepilogo">
       <div class="stat"><b id="sV">1</b><span>Vinte</span></div>
-      <div class="stat"><b id="sP">0</b><span>Perse</span></div>
-      <div class="stat"><b id="sF">56</b><span>Fatti</span></div>
-      <div class="stat"><b id="sS">40</b><span>Subiti</span></div>
+      <div class="stat"><b id="sP">1</b><span>Perse</span></div>
+      <div class="stat"><b id="sF">99</b><span>Fatti</span></div>
+      <div class="stat"><b id="sS">91</b><span>Subiti</span></div>
     </section>
     <div class="editbar">
       <button type="button" class="btn alt" id="icsBtn">📅 Aggiungi al calendario (.ics)</button>
@@ -386,19 +386,19 @@ html.js .view[hidden] { display:none; }
     <div class="row">
       <div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div>
       <div class="team us">LISSONE BLU</div>
-      <div class="score ro" aria-label="Punti LISSONE BLU"></div>
+      <div class="score ro" aria-label="Punti LISSONE BLU">43</div>
     </div>
     <div class="row">
       <div class="crest ro"><img src="loghi/gerardiana-monza.png" alt="Stemma GERARDIANA MONZA"></div>
       <div class="team">GERARDIANA MONZA</div>
-      <div class="score ro" aria-label="Punti GERARDIANA MONZA"></div>
+      <div class="score ro win" aria-label="Punti GERARDIANA MONZA">51</div>
     </div>
       <div class="foot">
         <span class="tag">Casa</span>
         <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzetto%20n.%201639%20%C2%B7%20Via%20Caravaggio%20snc%2C%20Lissone" target="_blank" rel="noopener">Palazzetto n. 1639 · Via Caravaggio snc, Lissone</a>
         
+        <span class="res l">Persa</span>
         
-        <button type="button" class="icsone" data-gara="11976" title="Aggiungi questa partita al calendario" aria-label="Aggiungi questa partita al calendario">📅</button>
         <button type="button" class="icsone share" data-gara="11976" title="Condividi" aria-label="Condividi">📤</button>
       </div>
       
@@ -686,8 +686,8 @@ const GARE = [
   "b": "GERARDIANA MONZA",
   "d": "2026-10-25",
   "t": "15:00",
-  "pa": null,
-  "pb": null,
+  "pa": 43,
+  "pb": 51,
   "v": "CASA"
  },
  {
@@ -1251,7 +1251,7 @@ document.getElementById('upd').textContent=AGGIORNATO?('Ultimo aggiornamento: '+
     const p=document.createElement('p');
     p.className='upd';
     p.style.cssText='color:var(--loss);font-weight:600';
-    p.textContent=`⚠️ Nessun aggiornamento da ${giorni} giorni: potrebbe esserci un problema, controlla su GitHub (Actions).`;
+    p.textContent=`⚠️ Nessun aggiornamento da ${giorni} giorni: probabilmente la FIP non ha ancora pubblicato i dati più recenti. Il sito si aggiorna da solo non appena saranno disponibili.`;
     document.getElementById('upd').insertAdjacentElement('afterend',p);
   }
 })();

@@ -97,7 +97,7 @@ def unisci(nuove, vecchie):
     prec = {g["n"]: g for g in vecchie}
     for g in nuove:
         p = prec.get(g["n"], {})
-        for campo in ("t", "v"):
+        for campo in ("t", "v", "pa", "pb"):
             if g[campo] is None:
                 g[campo] = p.get(campo)
     return nuove
