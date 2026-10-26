@@ -62,8 +62,8 @@
    "b": "GERARDIANA MONZA",
    "d": "2026-10-25",
    "t": "15:00",
-   "pa": 43,
-   "pb": 51,
+   "pa": null,
+   "pb": null,
    "v": "CASA"
   },
   {
@@ -331,5 +331,5 @@
    "v": "CASA"
   }
  ],
- "aggiornato": "26 ottobre 2026, 09:26"
+ "aggiornato": "26 ottobre 2026, 18:02"
 }
