@@ -40,8 +40,8 @@
    "b": "EUREKA MONZA",
    "d": "2026-10-25",
    "t": "10:00",
-   "pa": null,
-   "pb": null,
+   "pa": 81,
+   "pb": 39,
    "v": "Palestra · Via Marmolada (ang. via Monte Amiata), Monza"
   },
   {
@@ -51,8 +51,8 @@
    "b": "LISSONE BIANCA",
    "d": "2026-10-25",
    "t": "10:30",
-   "pa": null,
-   "pb": null,
+   "pa": 76,
+   "pb": 54,
    "v": "Palestra scuola Tognini · Via Rimembranze snc, Vedano al Lambro"
   },
   {
@@ -331,5 +331,5 @@
    "v": "CASA"
   }
  ],
- "aggiornato": "24 ottobre 2026, 15:10"
+ "aggiornato": "26 ottobre 2026, 09:26"
 }

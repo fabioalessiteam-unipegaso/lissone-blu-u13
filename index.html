@@ -380,7 +380,7 @@ html.js .view[hidden] { display:none; }
       </div>
       
       <div class="foot" style="margin-top:2px"><span>Gara 11973</span></div>
-    </div></article><article class="match home next"><div class="date"><span class="dow">dom</span><span class="day">25</span><span class="mon">ott</span><span class="time">15:00</span></div>
+    </div></article><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">25</span><span class="mon">ott</span><span class="time">15:00</span></div>
     <div class="body">
       
     <div class="row">
@@ -396,14 +396,14 @@ html.js .view[hidden] { display:none; }
       <div class="foot">
         <span class="tag">Casa</span>
         <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzetto%20n.%201639%20%C2%B7%20Via%20Caravaggio%20snc%2C%20Lissone" target="_blank" rel="noopener">Palazzetto n. 1639 · Via Caravaggio snc, Lissone</a>
-        <span class="nextflag">Prossima</span>
+        
         
         <button type="button" class="icsone" data-gara="11976" title="Aggiungi questa partita al calendario" aria-label="Aggiungi questa partita al calendario">📅</button>
         <button type="button" class="icsone share" data-gara="11976" title="Condividi" aria-label="Condividi">📤</button>
       </div>
-      <div class="foot" style="margin-top:2px"><span class="meteo" id="meteo"></span></div>
+      
       <div class="foot" style="margin-top:2px"><span>Gara 11976</span></div>
-    </div></article><article class="match"><div class="date"><span class="dow">dom</span><span class="day">1</span><span class="mon">nov</span><span class="time">10:00</span></div>
+    </div></article><article class="match next"><div class="date"><span class="dow">dom</span><span class="day">1</span><span class="mon">nov</span><span class="time">10:00</span></div>
     <div class="body">
       
     <div class="row">
@@ -419,12 +419,12 @@ html.js .view[hidden] { display:none; }
       <div class="foot">
         <span class="tag">Trasferta</span>
         <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20%C2%B7%20Via%20Marmolada%20(ang.%20via%20Monte%20Amiata)%2C%20Monza" target="_blank" rel="noopener">Palestra · Via Marmolada (ang. via Monte Amiata), Monza</a>
-        
+        <span class="nextflag">Prossima</span>
         
         <button type="button" class="icsone" data-gara="11979" title="Aggiungi questa partita al calendario" aria-label="Aggiungi questa partita al calendario">📅</button>
         <button type="button" class="icsone share" data-gara="11979" title="Condividi" aria-label="Condividi">📤</button>
       </div>
-      
+      <div class="foot" style="margin-top:2px"><span class="meteo" id="meteo"></span></div>
       <div class="foot" style="margin-top:2px"><span>Gara 11979</span></div>
     </div></article><article class="match"><div class="date"><span class="dow">sab</span><span class="day">7</span><span class="mon">nov</span><span class="time">15:00</span></div>
     <div class="body">
@@ -664,8 +664,8 @@ const GARE = [
   "b": "EUREKA MONZA",
   "d": "2026-10-25",
   "t": "10:00",
-  "pa": null,
-  "pb": null,
+  "pa": 81,
+  "pb": 39,
   "v": "Palestra · Via Marmolada (ang. via Monte Amiata), Monza"
  },
  {
@@ -675,8 +675,8 @@ const GARE = [
   "b": "LISSONE BIANCA",
   "d": "2026-10-25",
   "t": "10:30",
-  "pa": null,
-  "pb": null,
+  "pa": 76,
+  "pb": 54,
   "v": "Palestra scuola Tognini · Via Rimembranze snc, Vedano al Lambro"
  },
  {
@@ -956,7 +956,7 @@ const GARE = [
  }
 ];
 const GIORNATA_DATA = {"1": "2026-10-18", "2": "2026-10-25", "3": "2026-11-01", "4": "2026-11-08", "5": "2026-11-15", "6": "2026-11-22", "7": "2026-11-29", "8": "2026-12-06", "9": "2026-12-13", "10": "2026-12-20"};
-const AGGIORNATO = "24 ottobre 2026, 15:10";
+const AGGIORNATO = "26 ottobre 2026, 09:26";
 /* Loghi (facoltativo): cartella "loghi" accanto a index.html, es. 'LISSONE BLU': 'loghi/lissone-blu.png' */
 const LOGHI = {
   'LISSONE BLU': 'loghi/lissone-blu.png',
