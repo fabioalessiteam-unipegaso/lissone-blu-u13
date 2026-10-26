@@ -286,6 +286,15 @@ h3.gio { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:2
 .gsel select:focus-visible, .gsel button:focus-visible { outline:2px solid var(--orange); outline-offset:1px; }
 html.js .gblock[hidden] { display:none; }
 .gblock + .gblock { margin-top:8px; }
+/* POSIZIONE IN CLASSIFICA (riepilogo in fondo al Calendario) */
+.standing-mini { display:flex; align-items:center; gap:14px; background:var(--surface); border:1px solid var(--line2); border-radius:var(--radius-md); padding:14px 18px; margin:4px 0 0; text-decoration:none; color:inherit; position:relative; overflow:hidden; }
+.standing-mini::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--blue),var(--orange)); }
+.standing-mini:hover { border-color:var(--blue); }
+.standing-mini .pos { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:30px; line-height:1; color:var(--blue-light); flex:none; }
+.standing-mini .info { flex:1; min-width:0; }
+.standing-mini .info b { display:block; font-size:14.5px; }
+.standing-mini .info span { font-size:12.5px; color:var(--muted); }
+.standing-mini .arrow { flex:none; color:var(--muted); font-size:20px; }
 /* ALLENAMENTI */
 .train { background:var(--surface); border:1px solid var(--line2); border-radius:var(--radius-md); padding:18px; margin:0 0 16px; position:relative; overflow:hidden; }
 .train::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--blue),transparent); }
@@ -308,7 +317,7 @@ html.js .view[hidden] { display:none; }
   :root, :root[data-theme="dark"] { --bg:#fff; --surface:#fff; --surface2:#f3f3f3; --ink:#111; --muted:#555; --line2:#ccc; --subtle:#999; }
   body { background:#fff; color:#111; }
   body::before, body::after { display:none; }
-  .tabs, .editbar, .icsone, .nextflag { display:none !important; }
+  .tabs, .editbar, .icsone, .nextflag, .standing-mini { display:none !important; }
   html.js .view[hidden] { display:block; }
   html.js .gblock[hidden] { display:block; }
   .gsel { display:none; }
@@ -588,6 +597,7 @@ html.js .view[hidden] { display:none; }
       
       <div class="foot" style="margin-top:2px"><span>Gara 11998</span></div>
     </div></article></section>
+    <a class="standing-mini" id="standingMini" href="#girone"></a>
   </section>
 
   <section class="view" id="girone">
@@ -1208,6 +1218,15 @@ rows.forEach((t,i)=>{
     <td class="pt"><span class="ptpill">${t.pt}</span></td>`;
   cb.appendChild(tr);
 });
+(function(){
+  const el=document.getElementById('standingMini');
+  if(!el)return;
+  const idx=rows.findIndex(t=>t.n==='LISSONE BLU');
+  if(idx<0)return;
+  const t=rows[idx];
+  const d=t.df>0?`+${t.df}`:(t.df<0?`−${Math.abs(t.df)}`:'0');
+  el.innerHTML=`<span class="pos">${idx+1}°</span><span class="info"><b>${idx+1}° posto su ${rows.length} · ${t.pt} punti</b><span>${t.v}V ${t.p}P · ${d}</span></span><span class="arrow">›</span>`;
+})();
 
 /* ---------- Risultati e gare del girone, giornata per giornata ---------- */
 const lab=k=>k<=5?`${k}ª giornata di andata`:`${k-5}ª giornata di ritorno`;
@@ -1265,6 +1284,8 @@ function show(which){
   for(const k in VIEWS){VIEWS[k].hidden=(k!==which);TABS[k].setAttribute('aria-current',String(k===which))}
 }
 Object.keys(TABS).forEach(k=>TABS[k].addEventListener('click',e=>{e.preventDefault();show(k)}));
+const standingMini=document.getElementById('standingMini');
+if(standingMini)standingMini.addEventListener('click',e=>{e.preventDefault();show('girone')});
 show(location.hash.replace('#','')||'calendario');
 showG(curG);
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
