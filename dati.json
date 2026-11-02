@@ -68,24 +68,13 @@
   },
   {
    "g": 3,
-   "n": 11977,
-   "a": "GERARDIANA MONZA",
-   "b": "MB501",
-   "d": "2026-10-31",
-   "t": "18:00",
-   "pa": null,
-   "pb": null,
-   "v": "Palestra NEI · Via Enrico Da Monza 7, Monza"
-  },
-  {
-   "g": 3,
    "n": 11979,
    "a": "SANFRU MONZA",
    "b": "LISSONE BLU",
    "d": "2026-11-01",
    "t": "10:00",
-   "pa": null,
-   "pb": null,
+   "pa": 56,
+   "pb": 73,
    "v": "Palestra · Via Marmolada (ang. via Monte Amiata), Monza"
   },
   {
@@ -98,6 +87,17 @@
    "pa": null,
    "pb": null,
    "v": "CASA"
+  },
+  {
+   "g": 3,
+   "n": 11977,
+   "a": "GERARDIANA MONZA",
+   "b": "MB501",
+   "d": "2026-11-01",
+   "t": "18:00",
+   "pa": 81,
+   "pb": 33,
+   "v": "Palestra NEI · Via Enrico Da Monza 7, Monza"
   },
   {
    "g": 4,
@@ -331,5 +331,5 @@
    "v": "CASA"
   }
  ],
- "aggiornato": "26 ottobre 2026, 18:02"
+ "aggiornato": "2 novembre 2026, 21:32"
 }

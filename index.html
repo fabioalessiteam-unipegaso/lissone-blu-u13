@@ -347,10 +347,10 @@ html.js .view[hidden] { display:none; }
 
   <section class="view" id="calendario">
     <section class="stats" aria-label="Riepilogo">
-      <div class="stat"><b id="sV">1</b><span>Vinte</span></div>
+      <div class="stat"><b id="sV">2</b><span>Vinte</span></div>
       <div class="stat"><b id="sP">1</b><span>Perse</span></div>
-      <div class="stat"><b id="sF">99</b><span>Fatti</span></div>
-      <div class="stat"><b id="sS">91</b><span>Subiti</span></div>
+      <div class="stat"><b id="sF">172</b><span>Fatti</span></div>
+      <div class="stat"><b id="sS">147</b><span>Subiti</span></div>
     </section>
     <div class="editbar">
       <button type="button" class="btn alt" id="icsBtn">📅 Aggiungi al calendario (.ics)</button>
@@ -403,30 +403,30 @@ html.js .view[hidden] { display:none; }
       </div>
       
       <div class="foot" style="margin-top:2px"><span>Gara 11976</span></div>
-    </div></article><article class="match next"><div class="date"><span class="dow">dom</span><span class="day">1</span><span class="mon">nov</span><span class="time">10:00</span></div>
+    </div></article><article class="match"><div class="date"><span class="dow">dom</span><span class="day">1</span><span class="mon">nov</span><span class="time">10:00</span></div>
     <div class="body">
       
     <div class="row">
       <div class="crest ro"><img src="loghi/sanfru-monza.png" alt="Stemma SANFRU MONZA"></div>
       <div class="team">SANFRU MONZA</div>
-      <div class="score ro" aria-label="Punti SANFRU MONZA"></div>
+      <div class="score ro" aria-label="Punti SANFRU MONZA">56</div>
     </div>
     <div class="row">
       <div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div>
       <div class="team us">LISSONE BLU</div>
-      <div class="score ro" aria-label="Punti LISSONE BLU"></div>
+      <div class="score ro win" aria-label="Punti LISSONE BLU">73</div>
     </div>
       <div class="foot">
         <span class="tag">Trasferta</span>
         <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20%C2%B7%20Via%20Marmolada%20(ang.%20via%20Monte%20Amiata)%2C%20Monza" target="_blank" rel="noopener">Palestra · Via Marmolada (ang. via Monte Amiata), Monza</a>
-        <span class="nextflag">Prossima</span>
         
-        <button type="button" class="icsone" data-gara="11979" title="Aggiungi questa partita al calendario" aria-label="Aggiungi questa partita al calendario">📅</button>
+        <span class="res w">Vinta</span>
+        
         <button type="button" class="icsone share" data-gara="11979" title="Condividi" aria-label="Condividi">📤</button>
       </div>
-      <div class="foot" style="margin-top:2px"><span class="meteo" id="meteo"></span></div>
+      
       <div class="foot" style="margin-top:2px"><span>Gara 11979</span></div>
-    </div></article><article class="match"><div class="date"><span class="dow">sab</span><span class="day">7</span><span class="mon">nov</span><span class="time">15:00</span></div>
+    </div></article><article class="match next"><div class="date"><span class="dow">sab</span><span class="day">7</span><span class="mon">nov</span><span class="time">15:00</span></div>
     <div class="body">
       
     <div class="row">
@@ -442,12 +442,12 @@ html.js .view[hidden] { display:none; }
       <div class="foot">
         <span class="tag">Trasferta</span>
         <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Scuola%20Walter%20Bonatti%20%C2%B7%20Via%20Baioni%2C%20Monza" target="_blank" rel="noopener">Scuola Walter Bonatti · Via Baioni, Monza</a>
-        
+        <span class="nextflag">Prossima</span>
         
         <button type="button" class="icsone" data-gara="11981" title="Aggiungi questa partita al calendario" aria-label="Aggiungi questa partita al calendario">📅</button>
         <button type="button" class="icsone share" data-gara="11981" title="Condividi" aria-label="Condividi">📤</button>
       </div>
-      
+      <div class="foot" style="margin-top:2px"><span class="meteo" id="meteo"></span></div>
       <div class="foot" style="margin-top:2px"><span>Gara 11981</span></div>
     </div></article><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">15</span><span class="mon">nov</span><span class="time">15:00</span></div>
     <div class="body">
@@ -692,24 +692,13 @@ const GARE = [
  },
  {
   "g": 3,
-  "n": 11977,
-  "a": "GERARDIANA MONZA",
-  "b": "MB501",
-  "d": "2026-10-31",
-  "t": "18:00",
-  "pa": null,
-  "pb": null,
-  "v": "Palestra NEI · Via Enrico Da Monza 7, Monza"
- },
- {
-  "g": 3,
   "n": 11979,
   "a": "SANFRU MONZA",
   "b": "LISSONE BLU",
   "d": "2026-11-01",
   "t": "10:00",
-  "pa": null,
-  "pb": null,
+  "pa": 56,
+  "pb": 73,
   "v": "Palestra · Via Marmolada (ang. via Monte Amiata), Monza"
  },
  {
@@ -722,6 +711,17 @@ const GARE = [
   "pa": null,
   "pb": null,
   "v": "CASA"
+ },
+ {
+  "g": 3,
+  "n": 11977,
+  "a": "GERARDIANA MONZA",
+  "b": "MB501",
+  "d": "2026-11-01",
+  "t": "18:00",
+  "pa": 81,
+  "pb": 33,
+  "v": "Palestra NEI · Via Enrico Da Monza 7, Monza"
  },
  {
   "g": 4,
@@ -956,7 +956,7 @@ const GARE = [
  }
 ];
 const GIORNATA_DATA = {"1": "2026-10-18", "2": "2026-10-25", "3": "2026-11-01", "4": "2026-11-08", "5": "2026-11-15", "6": "2026-11-22", "7": "2026-11-29", "8": "2026-12-06", "9": "2026-12-13", "10": "2026-12-20"};
-const AGGIORNATO = "26 ottobre 2026, 18:02";
+const AGGIORNATO = "2 novembre 2026, 21:32";
 /* Loghi (facoltativo): cartella "loghi" accanto a index.html, es. 'LISSONE BLU': 'loghi/lissone-blu.png' */
 const LOGHI = {
   'LISSONE BLU': 'loghi/lissone-blu.png',
