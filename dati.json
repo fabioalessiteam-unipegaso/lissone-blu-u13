@@ -84,8 +84,8 @@
    "b": "EUREKA MONZA",
    "d": "2026-11-01",
    "t": "15:00",
-   "pa": null,
-   "pb": null,
+   "pa": 77,
+   "pb": 23,
    "v": "CASA"
   },
   {
@@ -331,5 +331,5 @@
    "v": "CASA"
   }
  ],
- "aggiornato": "2 novembre 2026, 21:32"
+ "aggiornato": "3 novembre 2026, 19:07"
 }
