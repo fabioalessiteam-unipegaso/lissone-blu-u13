@@ -419,6 +419,14 @@ const PLACE = {
 };
 const ORDINE_FIP = ['MB501','LISSONE BLU','GERARDIANA MONZA','SANFRU MONZA','LISSONE BIANCA','EUREKA MONZA'];
 const CASA = 'Palazzetto n. 1639 · Via Caravaggio snc, Lissone';
+const BAR_VICINO = {
+  [CASA]: {nome:'Il Barolino', ind:'Via Monza 95, Lissone', min:4, m:270},
+  'Palestra · Via Marmolada (ang. via Monte Amiata), Monza': {nome:'Al Dach Monza Caffè', ind:'Via Pizzagalli 6, Monza', min:4, m:290},
+  'Palestra scuola Tognini · Via Rimembranze snc, Vedano al Lambro': {nome:'Bar Biassoni Silvana', ind:'Via Santo Stefano 47, Vedano al Lambro', min:12, m:850},
+  'Palestra NEI · Via Enrico Da Monza 7, Monza': {nome:'Bar Caffè Portici', ind:'Via Pesa del Lino, Monza', min:4, m:270},
+  'Scuola Walter Bonatti · Via Baioni, Monza': {nome:'Scanferlato Barcafé', ind:'Via A. Cederna 29, Monza', min:5, m:350},
+  'Palestra Scuola Media · Via Baracca 15, Sovico': {nome:'Galleria del Gusto', ind:'Piazza E. Frette, Sovico', min:4, m:290},
+};
 const DOW=['dom','lun','mar','mer','gio','ven','sab'];
 const MON=['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
 const MESI=['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
@@ -467,12 +475,15 @@ function matchCard(g,opts){
   const el=document.createElement('article');
   el.className='match'+(homeGame?' home':'')+(opts.next?' next':'');
   const v=venue(g);
+  const bar=BAR_VICINO[v];
+  const barHtml=bar?`<a class="maploc bar" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(bar.nome+', '+bar.ind)}" target="_blank" rel="noopener">☕ ${bar.nome} · ${bar.min} min a piedi</a>`:'';
   el.innerHTML=`${dateBlock}
     <div class="body">
       ${row('a',g.a,g.pa)}${row('b',g.b,g.pb)}
       <div class="foot">
         ${opts.blu?`<span class="tag">${homeGame?'Casa':'Trasferta'}</span>`:''}
         ${v?`<a class="maploc" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v)}" target="_blank" rel="noopener">${v}</a>`:''}
+        ${barHtml}
         ${opts.next?'<span class="nextflag">Prossima</span>':''}
         ${badge}
         ${opts.blu&&!done&&g.d?`<button type="button" class="icsone" data-gara="${g.n}" title="Aggiungi questa partita al calendario" aria-label="Aggiungi questa partita al calendario">📅</button>`:''}
