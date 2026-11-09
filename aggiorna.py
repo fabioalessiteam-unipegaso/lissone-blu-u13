@@ -95,12 +95,48 @@ def leggi_pdf(percorso):
 # ---------- unione con i dati precedenti ----------
 def unisci(nuove, vecchie):
     prec = {g["n"]: g for g in vecchie}
+    trovate = {g["n"] for g in nuove}
     for g in nuove:
         p = prec.get(g["n"], {})
         for campo in ("t", "v", "pa", "pb"):
             if g[campo] is None:
                 g[campo] = p.get(campo)
+    # a volte il PDF di FIP omette temporaneamente una gara già nota (es. appena giocata):
+    # la manteniamo invece di perderla.
+    for n, g in prec.items():
+        if n not in trovate:
+            nuove.append(g)
     return nuove
+
+# ---------- fallback: punteggio dalla pagina risultati (quando manca nel PDF) ----------
+RE_SQUADRA_PUNTI = re.compile(
+    r'team__name">\s*([^<]+?)\s*</div>\s*<div class="team__points">\s*(\d+)\s*</div>')
+
+def punteggio_da_sito(numero):
+    url = f"https://fip.it/risultati/?search=true&numero_gara={numero}"
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (aggiornamento calendario)"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        html = r.read().decode("utf-8", "ignore")
+    squadre = RE_SQUADRA_PUNTI.findall(html)
+    if len(squadre) != 2:
+        return None
+    return {nome_squadra(nome): int(punti) for nome, punti in squadre}
+
+def completa_risultati_mancanti(gare, oggi):
+    """Per le gare già giocate (data passata) ma senza punteggio nel PDF,
+    prova a recuperare il risultato dalla pagina risultati di FIP."""
+    for g in gare:
+        if g["pa"] is not None or g["pb"] is not None:
+            continue
+        if not g["n"] or not g["d"] or g["d"] >= oggi:
+            continue
+        try:
+            punti = punteggio_da_sito(g["n"])
+        except Exception:
+            continue
+        if not punti or g["a"] not in punti or g["b"] not in punti:
+            continue
+        g["pa"], g["pb"] = punti[g["a"]], punti[g["b"]]
 
 def main():
     pdf_path = None
@@ -116,13 +152,13 @@ def main():
     cache_file = QUI / "dati.json"
     cache = json.loads(cache_file.read_text(encoding="utf-8")) if cache_file.exists() else {"gare": [], "aggiornato": ""}
 
-    # controlli di sicurezza: se la lettura non torna, non tocchiamo il sito
+    # controllo di sicurezza: se la lettura non torna, non tocchiamo il sito
     if len(nuove) < 10 or any(g["n"] is None for g in nuove):
         sys.exit(f"Lettura del PDF non riuscita (gare lette: {len(nuove)}). Il sito non è stato modificato.")
-    if cache["gare"] and len(nuove) < len(cache["gare"]):
-        sys.exit("Il PDF contiene meno gare di prima. Il sito non è stato modificato.")
 
     nuove = unisci(nuove, cache["gare"])
+    oggi = datetime.now(ZoneInfo("Europe/Rome")).strftime("%Y-%m-%d")
+    completa_risultati_mancanti(nuove, oggi)
     nuove.sort(key=lambda g: (g["g"], (g["d"] or "") + (g["t"] or ""), g["n"]))
     if nuove == cache["gare"] and (QUI / "index.html").exists():
         print("Nessuna novità.")

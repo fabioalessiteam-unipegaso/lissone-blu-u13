@@ -106,8 +106,8 @@
    "b": "LISSONE BLU",
    "d": "2026-11-07",
    "t": "15:00",
-   "pa": null,
-   "pb": null,
+   "pa": 30,
+   "pb": 95,
    "v": "Scuola Walter Bonatti · Via Baioni, Monza"
   },
   {
@@ -117,8 +117,8 @@
    "b": "SANFRU MONZA",
    "d": "2026-11-08",
    "t": "10:30",
-   "pa": null,
-   "pb": null,
+   "pa": 73,
+   "pb": 55,
    "v": "Palestra scuola Tognini · Via Rimembranze snc, Vedano al Lambro"
   },
   {
@@ -331,5 +331,5 @@
    "v": "CASA"
   }
  ],
- "aggiornato": "3 novembre 2026, 19:07"
+ "aggiornato": "9 novembre 2026, 22:44"
 }
