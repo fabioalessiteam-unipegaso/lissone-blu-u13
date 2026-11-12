@@ -126,10 +126,10 @@
    "n": 11982,
    "a": "LISSONE BIANCA",
    "b": "GERARDIANA MONZA",
-   "d": "2026-11-10",
+   "d": "2026-11-08",
    "t": "19:30",
-   "pa": null,
-   "pb": null,
+   "pa": 39,
+   "pb": 53,
    "v": "CASA"
   },
   {
@@ -160,7 +160,7 @@
    "a": "LISSONE BLU",
    "b": "MB501",
    "d": "2026-11-15",
-   "t": "15:00",
+   "t": "17:00",
    "pa": null,
    "pb": null,
    "v": "CASA"
@@ -331,5 +331,5 @@
    "v": "CASA"
   }
  ],
- "aggiornato": "9 novembre 2026, 22:44"
+ "aggiornato": "12 novembre 2026, 19:38"
 }
