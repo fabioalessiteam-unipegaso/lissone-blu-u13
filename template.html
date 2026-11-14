@@ -372,11 +372,11 @@ html.js .view[hidden] { display:none; }
     <p class="sub">Qualificazione · 6 squadre, andata e ritorno</p>
     <div class="tablewrap">
       <table class="cl" id="cl">
-        <thead><tr><th></th><th class="sq">Squadra</th><th>G</th><th>V</th><th>P</th><th class="c-pp">PF</th><th class="c-pp">PS</th><th>+/−</th><th>Punti</th></tr></thead>
+        <thead><tr><th></th><th class="sq">Squadra</th><th>G</th><th>V</th><th>P</th><th class="c-pp">PF</th><th class="c-pp">PS</th><th>+/−</th><th class="c-pp">Quoz.</th><th>Punti</th></tr></thead>
         <tbody id="clbody"></tbody>
       </table>
     </div>
-    <p class="legend"><b>G</b> partite giocate · <b>V</b> vinte · <b>P</b> perse · <b>PF</b> punti fatti · <b>PS</b> punti subiti (su schermi larghi) · <b>+/−</b> differenza tra punti fatti e subiti. Una vittoria vale <b>2 punti</b>, una sconfitta 0. A parità di punti l’ordine è quello della FIP.</p>
+    <p class="legend"><b>G</b> partite giocate · <b>V</b> vinte · <b>P</b> perse · <b>PF</b> punti fatti · <b>PS</b> punti subiti · <b>+/−</b> differenza tra punti fatti e subiti · <b>Quoz.</b> quoziente canestri, PF/PS (su schermi larghi; è uno dei criteri usati per il tabellone playoff). Una vittoria vale <b>2 punti</b>, una sconfitta 0. A parità di punti l’ordine è quello della FIP.</p>
 
     <div class="nextphase" id="nextPhase" hidden>
       <h3>Prossima fase</h3>
@@ -668,6 +668,7 @@ rows.forEach((t,i)=>{
   tr.innerHTML=`<td class="pos">${i+1}</td>
     <td class="sq"><div class="sqin"><div class="crest ro">${crestInner(t.n)}</div><b>${t.n}</b></div></td>
     <td>${t.g}</td><td>${t.v}</td><td>${t.p}</td><td class="c-pp">${t.pf}</td><td class="c-pp">${t.ps}</td><td>${d}</td>
+    <td class="c-pp">${t.ps>0?(t.pf/t.ps).toFixed(2):'–'}</td>
     <td class="pt"><span class="ptpill">${t.pt}</span></td>`;
   cb.appendChild(tr);
 });

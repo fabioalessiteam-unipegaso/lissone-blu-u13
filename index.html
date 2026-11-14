@@ -342,7 +342,7 @@ html.js .view[hidden] { display:none; }
       </div>
     </div>
   </header>
-  <p class="upd" id="upd">Ultimo aggiornamento: 14 novembre 2026, 16:00</p>
+  <p class="upd" id="upd">Ultimo aggiornamento: 14 novembre 2026, 16:03</p>
 
   <nav class="tabs" aria-label="Sezioni">
     <a href="#calendario" id="t-cal" aria-current="true">Calendario Blu</a>
@@ -610,29 +610,35 @@ html.js .view[hidden] { display:none; }
     <p class="sub">Qualificazione · 6 squadre, andata e ritorno</p>
     <div class="tablewrap">
       <table class="cl" id="cl">
-        <thead><tr><th></th><th class="sq">Squadra</th><th>G</th><th>V</th><th>P</th><th class="c-pp">PF</th><th class="c-pp">PS</th><th>+/−</th><th>Punti</th></tr></thead>
+        <thead><tr><th></th><th class="sq">Squadra</th><th>G</th><th>V</th><th>P</th><th class="c-pp">PF</th><th class="c-pp">PS</th><th>+/−</th><th class="c-pp">Quoz.</th><th>Punti</th></tr></thead>
         <tbody id="clbody"><tr><td class="pos">1</td>
     <td class="sq"><div class="sqin"><div class="crest ro"><img src="loghi/gerardiana-monza.png" alt="Stemma GERARDIANA MONZA"></div><b>GERARDIANA MONZA</b></div></td>
     <td>4</td><td>4</td><td>0</td><td class="c-pp">245</td><td class="c-pp">159</td><td><span class="diffp">+86</span></td>
+    <td class="c-pp">1.54</td>
     <td class="pt"><span class="ptpill">8</span></td></tr><tr class="us"><td class="pos">2</td>
     <td class="sq"><div class="sqin"><div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div><b>LISSONE BLU</b></div></td>
     <td>4</td><td>3</td><td>1</td><td class="c-pp">267</td><td class="c-pp">177</td><td><span class="diffp">+90</span></td>
+    <td class="c-pp">1.51</td>
     <td class="pt"><span class="ptpill">6</span></td></tr><tr><td class="pos">3</td>
     <td class="sq"><div class="sqin"><div class="crest ro"><img src="loghi/mb501.png" alt="Stemma MB501"></div><b>MB501</b></div></td>
     <td>4</td><td>3</td><td>1</td><td class="c-pp">250</td><td class="c-pp">234</td><td><span class="diffp">+16</span></td>
+    <td class="c-pp">1.07</td>
     <td class="pt"><span class="ptpill">6</span></td></tr><tr><td class="pos">4</td>
     <td class="sq"><div class="sqin"><div class="crest ro"><img src="loghi/lissone-bianca.png" alt="Stemma LISSONE BIANCA"></div><b>LISSONE BIANCA</b></div></td>
     <td>4</td><td>1</td><td>3</td><td class="c-pp">210</td><td class="c-pp">208</td><td><span class="diffp">+2</span></td>
+    <td class="c-pp">1.01</td>
     <td class="pt"><span class="ptpill">2</span></td></tr><tr><td class="pos">5</td>
     <td class="sq"><div class="sqin"><div class="crest ro"><img src="loghi/sanfru-monza.png" alt="Stemma SANFRU MONZA"></div><b>SANFRU MONZA</b></div></td>
     <td>4</td><td>1</td><td>3</td><td class="c-pp">236</td><td class="c-pp">245</td><td><span class="diffn">−9</span></td>
+    <td class="c-pp">0.96</td>
     <td class="pt"><span class="ptpill">2</span></td></tr><tr><td class="pos">6</td>
     <td class="sq"><div class="sqin"><div class="crest ro"><img src="loghi/eureka-monza.png" alt="Stemma EUREKA MONZA"></div><b>EUREKA MONZA</b></div></td>
     <td>4</td><td>0</td><td>4</td><td class="c-pp">136</td><td class="c-pp">321</td><td><span class="diffn">−185</span></td>
+    <td class="c-pp">0.42</td>
     <td class="pt"><span class="ptpill">0</span></td></tr></tbody>
       </table>
     </div>
-    <p class="legend"><b>G</b> partite giocate · <b>V</b> vinte · <b>P</b> perse · <b>PF</b> punti fatti · <b>PS</b> punti subiti (su schermi larghi) · <b>+/−</b> differenza tra punti fatti e subiti. Una vittoria vale <b>2 punti</b>, una sconfitta 0. A parità di punti l’ordine è quello della FIP.</p>
+    <p class="legend"><b>G</b> partite giocate · <b>V</b> vinte · <b>P</b> perse · <b>PF</b> punti fatti · <b>PS</b> punti subiti · <b>+/−</b> differenza tra punti fatti e subiti · <b>Quoz.</b> quoziente canestri, PF/PS (su schermi larghi; è uno dei criteri usati per il tabellone playoff). Una vittoria vale <b>2 punti</b>, una sconfitta 0. A parità di punti l’ordine è quello della FIP.</p>
 
     <div class="nextphase" id="nextPhase">
       <h3>Prossima fase</h3>
@@ -1362,7 +1368,7 @@ html.js .view[hidden] { display:none; }
       
       <div class="foot" style="margin-top:2px"><span>Gara 11999</span></div>
     </div></article></div></div></div>
-    <p class="src" id="src">Fonte: FIP · Under 13 Maschile Regionale, Qualificazione · aggiornato al 14 novembre 2026, 16:00</p>
+    <p class="src" id="src">Fonte: FIP · Under 13 Maschile Regionale, Qualificazione · aggiornato al 14 novembre 2026, 16:03</p>
   </section>
 
   <section class="view" id="allenamenti">
@@ -1715,7 +1721,7 @@ const GARE = [
  }
 ];
 const GIORNATA_DATA = {"1": "2026-10-18", "2": "2026-10-25", "3": "2026-11-01", "4": "2026-11-08", "5": "2026-11-15", "6": "2026-11-22", "7": "2026-11-29", "8": "2026-12-06", "9": "2026-12-13", "10": "2026-12-20"};
-const AGGIORNATO = "14 novembre 2026, 16:00";
+const AGGIORNATO = "14 novembre 2026, 16:03";
 /* Loghi (facoltativo): cartella "loghi" accanto a index.html, es. 'LISSONE BLU': 'loghi/lissone-blu.png' */
 const LOGHI = {
   'LISSONE BLU': 'loghi/lissone-blu.png',
@@ -1975,6 +1981,7 @@ rows.forEach((t,i)=>{
   tr.innerHTML=`<td class="pos">${i+1}</td>
     <td class="sq"><div class="sqin"><div class="crest ro">${crestInner(t.n)}</div><b>${t.n}</b></div></td>
     <td>${t.g}</td><td>${t.v}</td><td>${t.p}</td><td class="c-pp">${t.pf}</td><td class="c-pp">${t.ps}</td><td>${d}</td>
+    <td class="c-pp">${t.ps>0?(t.pf/t.ps).toFixed(2):'–'}</td>
     <td class="pt"><span class="ptpill">${t.pt}</span></td>`;
   cb.appendChild(tr);
 });
