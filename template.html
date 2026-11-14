@@ -278,6 +278,11 @@ table.cl { width:100%; border-collapse:collapse; font-size:14.5px; }
 .diffp { color:var(--win); font-weight:600; }
 .diffn { color:var(--loss); font-weight:600; }
 .legend { margin:12px 2px 0; font-size:13px; color:var(--muted); line-height:1.7; }
+.nextphase { margin-top:18px; padding:14px 16px; background:var(--surface); border:1px solid var(--line2); border-radius:var(--radius-md); }
+.nextphase h3 { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:18px; margin-bottom:6px; color:var(--ink); }
+.nextphase p:not(.legend) { font-size:14px; line-height:1.5; }
+.zona-silver { color:#c9c9d6; font-weight:800; }
+.zona-bronze { color:var(--orange-light); font-weight:800; }
 .legend b { color: var(--ink); }
 h3.gio { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:20px; margin:24px 0 10px; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; }
 .gsel { display:flex; gap:8px; margin:0 0 4px; align-items:stretch; }
@@ -372,6 +377,12 @@ html.js .view[hidden] { display:none; }
       </table>
     </div>
     <p class="legend"><b>G</b> partite giocate · <b>V</b> vinte · <b>P</b> perse · <b>PF</b> punti fatti · <b>PS</b> punti subiti (su schermi larghi) · <b>+/−</b> differenza tra punti fatti e subiti. Una vittoria vale <b>2 punti</b>, una sconfitta 0. A parità di punti l’ordine è quello della FIP.</p>
+
+    <div class="nextphase" id="nextPhase" hidden>
+      <h3>Prossima fase</h3>
+      <p id="nextPhaseZona"></p>
+      <p class="legend">La qualificazione finisce il <b>20 dicembre</b>. Poi le squadre vengono smistate in gironi nuovi (altre squadre, nuovo calendario): 1°-3° posto → girone <b>Silver</b>, 4°-6° posto → girone <b>Bronze</b>. Seconda fase: <b>17 gennaio – 25 aprile</b> (7 gare di andata e 7 di ritorno). Le squadre Silver meglio piazzate accedono poi ai playoff, da inizio maggio a inizio giugno.</p>
+    </div>
 
     <div class="gsel"><button type="button" id="gprev" aria-label="Giornata precedente">‹</button><select id="gsel" aria-label="Scegli la giornata"></select><button type="button" id="gnext" aria-label="Giornata successiva">›</button></div>
     <div id="gare"></div>
@@ -660,6 +671,17 @@ rows.forEach((t,i)=>{
     <td class="pt"><span class="ptpill">${t.pt}</span></td>`;
   cb.appendChild(tr);
 });
+
+/* ---------- Prossima fase (Silver/Bronze) ---------- */
+(function(){
+  const posBlu=rows.findIndex(t=>t.n==='LISSONE BLU')+1;
+  if(!posBlu)return;
+  const silver=posBlu<=3;
+  const zonaHtml=silver?'<span class="zona-silver">Silver</span>':'<span class="zona-bronze">Bronze</span>';
+  document.getElementById('nextPhaseZona').innerHTML=
+    `Al momento siamo <b>${posBlu}°</b> in classifica: se la qualificazione finisse oggi saremmo in zona ${zonaHtml} (1°-3° posto Silver, 4°-6° Bronze). Aggiornato da solo a ogni giornata.`;
+  document.getElementById('nextPhase').hidden=false;
+})();
 
 /* ---------- Risultati e gare del girone, giornata per giornata ---------- */
 const lab=k=>k<=5?`${k}ª giornata di andata`:`${k-5}ª giornata di ritorno`;

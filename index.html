@@ -276,6 +276,11 @@ table.cl { width:100%; border-collapse:collapse; font-size:14.5px; }
 .diffp { color:var(--win); font-weight:600; }
 .diffn { color:var(--loss); font-weight:600; }
 .legend { margin:12px 2px 0; font-size:13px; color:var(--muted); line-height:1.7; }
+.nextphase { margin-top:18px; padding:14px 16px; background:var(--surface); border:1px solid var(--line2); border-radius:var(--radius-md); }
+.nextphase h3 { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:18px; margin-bottom:6px; color:var(--ink); }
+.nextphase p:not(.legend) { font-size:14px; line-height:1.5; }
+.zona-silver { color:#c9c9d6; font-weight:800; }
+.zona-bronze { color:var(--orange-light); font-weight:800; }
 .legend b { color: var(--ink); }
 h3.gio { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:20px; margin:24px 0 10px; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; }
 .gsel { display:flex; gap:8px; margin:0 0 4px; align-items:stretch; }
@@ -337,12 +342,12 @@ html.js .view[hidden] { display:none; }
       </div>
     </div>
   </header>
-  <p class="upd" id="upd"></p>
+  <p class="upd" id="upd">Ultimo aggiornamento: 14 novembre 2026, 16:00</p>
 
   <nav class="tabs" aria-label="Sezioni">
     <a href="#calendario" id="t-cal" aria-current="true">Calendario Blu</a>
-    <a href="#girone" id="t-gir">Girone</a>
-    <a href="#allenamenti" id="t-tra">Allenamenti</a>
+    <a href="#girone" id="t-gir" aria-current="false">Girone</a>
+    <a href="#allenamenti" id="t-tra" aria-current="false">Allenamenti</a>
   </nav>
 
   <section class="view" id="calendario">
@@ -606,14 +611,758 @@ html.js .view[hidden] { display:none; }
     <div class="tablewrap">
       <table class="cl" id="cl">
         <thead><tr><th></th><th class="sq">Squadra</th><th>G</th><th>V</th><th>P</th><th class="c-pp">PF</th><th class="c-pp">PS</th><th>+/−</th><th>Punti</th></tr></thead>
-        <tbody id="clbody"></tbody>
+        <tbody id="clbody"><tr><td class="pos">1</td>
+    <td class="sq"><div class="sqin"><div class="crest ro"><img src="loghi/gerardiana-monza.png" alt="Stemma GERARDIANA MONZA"></div><b>GERARDIANA MONZA</b></div></td>
+    <td>4</td><td>4</td><td>0</td><td class="c-pp">245</td><td class="c-pp">159</td><td><span class="diffp">+86</span></td>
+    <td class="pt"><span class="ptpill">8</span></td></tr><tr class="us"><td class="pos">2</td>
+    <td class="sq"><div class="sqin"><div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div><b>LISSONE BLU</b></div></td>
+    <td>4</td><td>3</td><td>1</td><td class="c-pp">267</td><td class="c-pp">177</td><td><span class="diffp">+90</span></td>
+    <td class="pt"><span class="ptpill">6</span></td></tr><tr><td class="pos">3</td>
+    <td class="sq"><div class="sqin"><div class="crest ro"><img src="loghi/mb501.png" alt="Stemma MB501"></div><b>MB501</b></div></td>
+    <td>4</td><td>3</td><td>1</td><td class="c-pp">250</td><td class="c-pp">234</td><td><span class="diffp">+16</span></td>
+    <td class="pt"><span class="ptpill">6</span></td></tr><tr><td class="pos">4</td>
+    <td class="sq"><div class="sqin"><div class="crest ro"><img src="loghi/lissone-bianca.png" alt="Stemma LISSONE BIANCA"></div><b>LISSONE BIANCA</b></div></td>
+    <td>4</td><td>1</td><td>3</td><td class="c-pp">210</td><td class="c-pp">208</td><td><span class="diffp">+2</span></td>
+    <td class="pt"><span class="ptpill">2</span></td></tr><tr><td class="pos">5</td>
+    <td class="sq"><div class="sqin"><div class="crest ro"><img src="loghi/sanfru-monza.png" alt="Stemma SANFRU MONZA"></div><b>SANFRU MONZA</b></div></td>
+    <td>4</td><td>1</td><td>3</td><td class="c-pp">236</td><td class="c-pp">245</td><td><span class="diffn">−9</span></td>
+    <td class="pt"><span class="ptpill">2</span></td></tr><tr><td class="pos">6</td>
+    <td class="sq"><div class="sqin"><div class="crest ro"><img src="loghi/eureka-monza.png" alt="Stemma EUREKA MONZA"></div><b>EUREKA MONZA</b></div></td>
+    <td>4</td><td>0</td><td>4</td><td class="c-pp">136</td><td class="c-pp">321</td><td><span class="diffn">−185</span></td>
+    <td class="pt"><span class="ptpill">0</span></td></tr></tbody>
       </table>
     </div>
     <p class="legend"><b>G</b> partite giocate · <b>V</b> vinte · <b>P</b> perse · <b>PF</b> punti fatti · <b>PS</b> punti subiti (su schermi larghi) · <b>+/−</b> differenza tra punti fatti e subiti. Una vittoria vale <b>2 punti</b>, una sconfitta 0. A parità di punti l’ordine è quello della FIP.</p>
 
-    <div class="gsel"><button type="button" id="gprev" aria-label="Giornata precedente">‹</button><select id="gsel" aria-label="Scegli la giornata"></select><button type="button" id="gnext" aria-label="Giornata successiva">›</button></div>
-    <div id="gare"></div>
-    <p class="src" id="src"></p>
+    <div class="nextphase" id="nextPhase">
+      <h3>Prossima fase</h3>
+      <p id="nextPhaseZona">Al momento siamo <b>2°</b> in classifica: se la qualificazione finisse oggi saremmo in zona <span class="zona-silver">Silver</span> (1°-3° posto Silver, 4°-6° Bronze). Aggiornato da solo a ogni giornata.</p>
+      <p class="legend">La qualificazione finisce il <b>20 dicembre</b>. Poi le squadre vengono smistate in gironi nuovi (altre squadre, nuovo calendario): 1°-3° posto → girone <b>Silver</b>, 4°-6° posto → girone <b>Bronze</b>. Seconda fase: <b>17 gennaio – 25 aprile</b> (7 gare di andata e 7 di ritorno). Le squadre Silver meglio piazzate accedono poi ai playoff, da inizio maggio a inizio giugno.</p>
+    </div>
+
+    <div class="gsel"><button type="button" id="gprev" aria-label="Giornata precedente">‹</button><select id="gsel" aria-label="Scegli la giornata"><option value="1">1ª andata · 18 ott</option><option value="2">2ª andata · 25 ott</option><option value="3">3ª andata · 1 nov</option><option value="4">4ª andata · 8 nov</option><option value="5">5ª andata · 15 nov</option><option value="6">1ª ritorno · 22 nov</option><option value="7">2ª ritorno · 29 nov</option><option value="8">3ª ritorno · 6 dic</option><option value="9">4ª ritorno · 13 dic</option><option value="10">5ª ritorno · 20 dic</option></select><button type="button" id="gnext" aria-label="Giornata successiva">›</button></div>
+    <div id="gare"><div class="gblock" data-g="1"><h3 class="gio">1ª giornata di andata · 18 ottobre</h3><div class="list"><article class="match"><div class="date"><span class="dow">dom</span><span class="day">18</span><span class="mon">ott</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/gerardiana-monza.png" alt="Stemma GERARDIANA MONZA"></div>
+      <div class="team">GERARDIANA MONZA</div>
+      <div class="score ro win" aria-label="Punti GERARDIANA MONZA">60</div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/sanfru-monza.png" alt="Stemma SANFRU MONZA"></div>
+      <div class="team">SANFRU MONZA</div>
+      <div class="score ro" aria-label="Punti SANFRU MONZA">44</div>
+    </div>
+      <div class="foot">
+        
+        
+        
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11971</span></div>
+    </div></article><article class="match"><div class="date"><span class="dow">dom</span><span class="day">18</span><span class="mon">ott</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/eureka-monza.png" alt="Stemma EUREKA MONZA"></div>
+      <div class="team">EUREKA MONZA</div>
+      <div class="score ro" aria-label="Punti EUREKA MONZA">44</div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/mb501.png" alt="Stemma MB501"></div>
+      <div class="team">MB501</div>
+      <div class="score ro win" aria-label="Punti MB501">68</div>
+    </div>
+      <div class="foot">
+        
+        
+        
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11972</span></div>
+    </div></article><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">18</span><span class="mon">ott</span><span class="time">16:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-bianca.png" alt="Stemma LISSONE BIANCA"></div>
+      <div class="team">LISSONE BIANCA</div>
+      <div class="score ro" aria-label="Punti LISSONE BIANCA">40</div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div>
+      <div class="team us">LISSONE BLU</div>
+      <div class="score ro win" aria-label="Punti LISSONE BLU">56</div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzetto%20n.%201639%20%C2%B7%20Via%20Caravaggio%20snc%2C%20Lissone" target="_blank" rel="noopener">Palazzetto n. 1639 · Via Caravaggio snc, Lissone</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Il%20Barolino%2C%20Via%20Monza%2095%2C%20Lissone" target="_blank" rel="noopener">☕ Il Barolino · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11973</span></div>
+    </div></article></div></div><div class="gblock" data-g="2"><h3 class="gio">2ª giornata di andata · 25 ottobre</h3><div class="list"><article class="match"><div class="date"><span class="dow">dom</span><span class="day">25</span><span class="mon">ott</span><span class="time">10:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/sanfru-monza.png" alt="Stemma SANFRU MONZA"></div>
+      <div class="team">SANFRU MONZA</div>
+      <div class="score ro win" aria-label="Punti SANFRU MONZA">81</div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/eureka-monza.png" alt="Stemma EUREKA MONZA"></div>
+      <div class="team">EUREKA MONZA</div>
+      <div class="score ro" aria-label="Punti EUREKA MONZA">39</div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20%C2%B7%20Via%20Marmolada%20(ang.%20via%20Monte%20Amiata)%2C%20Monza" target="_blank" rel="noopener">Palestra · Via Marmolada (ang. via Monte Amiata), Monza</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Al%20Dach%20Monza%20Caff%C3%A8%2C%20Via%20Pizzagalli%206%2C%20Monza" target="_blank" rel="noopener">☕ Al Dach Monza Caffè · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11974</span></div>
+    </div></article><article class="match"><div class="date"><span class="dow">dom</span><span class="day">25</span><span class="mon">ott</span><span class="time">10:30</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/mb501.png" alt="Stemma MB501"></div>
+      <div class="team">MB501</div>
+      <div class="score ro win" aria-label="Punti MB501">76</div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-bianca.png" alt="Stemma LISSONE BIANCA"></div>
+      <div class="team">LISSONE BIANCA</div>
+      <div class="score ro" aria-label="Punti LISSONE BIANCA">54</div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20scuola%20Tognini%20%C2%B7%20Via%20Rimembranze%20snc%2C%20Vedano%20al%20Lambro" target="_blank" rel="noopener">Palestra scuola Tognini · Via Rimembranze snc, Vedano al Lambro</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Bar%20Biassoni%20Silvana%2C%20Via%20Santo%20Stefano%2047%2C%20Vedano%20al%20Lambro" target="_blank" rel="noopener">☕ Bar Biassoni Silvana · 12 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11975</span></div>
+    </div></article><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">25</span><span class="mon">ott</span><span class="time">15:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div>
+      <div class="team us">LISSONE BLU</div>
+      <div class="score ro" aria-label="Punti LISSONE BLU">43</div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/gerardiana-monza.png" alt="Stemma GERARDIANA MONZA"></div>
+      <div class="team">GERARDIANA MONZA</div>
+      <div class="score ro win" aria-label="Punti GERARDIANA MONZA">51</div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzetto%20n.%201639%20%C2%B7%20Via%20Caravaggio%20snc%2C%20Lissone" target="_blank" rel="noopener">Palazzetto n. 1639 · Via Caravaggio snc, Lissone</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Il%20Barolino%2C%20Via%20Monza%2095%2C%20Lissone" target="_blank" rel="noopener">☕ Il Barolino · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11976</span></div>
+    </div></article></div></div><div class="gblock" data-g="3"><h3 class="gio">3ª giornata di andata · 1 novembre</h3><div class="list"><article class="match"><div class="date"><span class="dow">dom</span><span class="day">1</span><span class="mon">nov</span><span class="time">10:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/sanfru-monza.png" alt="Stemma SANFRU MONZA"></div>
+      <div class="team">SANFRU MONZA</div>
+      <div class="score ro" aria-label="Punti SANFRU MONZA">56</div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div>
+      <div class="team us">LISSONE BLU</div>
+      <div class="score ro win" aria-label="Punti LISSONE BLU">73</div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20%C2%B7%20Via%20Marmolada%20(ang.%20via%20Monte%20Amiata)%2C%20Monza" target="_blank" rel="noopener">Palestra · Via Marmolada (ang. via Monte Amiata), Monza</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Al%20Dach%20Monza%20Caff%C3%A8%2C%20Via%20Pizzagalli%206%2C%20Monza" target="_blank" rel="noopener">☕ Al Dach Monza Caffè · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11979</span></div>
+    </div></article><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">1</span><span class="mon">nov</span><span class="time">15:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-bianca.png" alt="Stemma LISSONE BIANCA"></div>
+      <div class="team">LISSONE BIANCA</div>
+      <div class="score ro win" aria-label="Punti LISSONE BIANCA">77</div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/eureka-monza.png" alt="Stemma EUREKA MONZA"></div>
+      <div class="team">EUREKA MONZA</div>
+      <div class="score ro" aria-label="Punti EUREKA MONZA">23</div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzetto%20n.%201639%20%C2%B7%20Via%20Caravaggio%20snc%2C%20Lissone" target="_blank" rel="noopener">Palazzetto n. 1639 · Via Caravaggio snc, Lissone</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Il%20Barolino%2C%20Via%20Monza%2095%2C%20Lissone" target="_blank" rel="noopener">☕ Il Barolino · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11978</span></div>
+    </div></article><article class="match"><div class="date"><span class="dow">dom</span><span class="day">1</span><span class="mon">nov</span><span class="time">18:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/gerardiana-monza.png" alt="Stemma GERARDIANA MONZA"></div>
+      <div class="team">GERARDIANA MONZA</div>
+      <div class="score ro win" aria-label="Punti GERARDIANA MONZA">81</div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/mb501.png" alt="Stemma MB501"></div>
+      <div class="team">MB501</div>
+      <div class="score ro" aria-label="Punti MB501">33</div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20NEI%20%C2%B7%20Via%20Enrico%20Da%20Monza%207%2C%20Monza" target="_blank" rel="noopener">Palestra NEI · Via Enrico Da Monza 7, Monza</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Bar%20Caff%C3%A8%20Portici%2C%20Via%20Pesa%20del%20Lino%2C%20Monza" target="_blank" rel="noopener">☕ Bar Caffè Portici · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11977</span></div>
+    </div></article></div></div><div class="gblock" data-g="4"><h3 class="gio">4ª giornata di andata · 8 novembre</h3><div class="list"><article class="match"><div class="date"><span class="dow">sab</span><span class="day">7</span><span class="mon">nov</span><span class="time">15:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/eureka-monza.png" alt="Stemma EUREKA MONZA"></div>
+      <div class="team">EUREKA MONZA</div>
+      <div class="score ro" aria-label="Punti EUREKA MONZA">30</div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div>
+      <div class="team us">LISSONE BLU</div>
+      <div class="score ro win" aria-label="Punti LISSONE BLU">95</div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Scuola%20Walter%20Bonatti%20%C2%B7%20Via%20Baioni%2C%20Monza" target="_blank" rel="noopener">Scuola Walter Bonatti · Via Baioni, Monza</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Scanferlato%20Barcaf%C3%A9%2C%20Via%20A.%20Cederna%2029%2C%20Monza" target="_blank" rel="noopener">☕ Scanferlato Barcafé · 5 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11981</span></div>
+    </div></article><article class="match"><div class="date"><span class="dow">dom</span><span class="day">8</span><span class="mon">nov</span><span class="time">10:30</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/mb501.png" alt="Stemma MB501"></div>
+      <div class="team">MB501</div>
+      <div class="score ro win" aria-label="Punti MB501">73</div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/sanfru-monza.png" alt="Stemma SANFRU MONZA"></div>
+      <div class="team">SANFRU MONZA</div>
+      <div class="score ro" aria-label="Punti SANFRU MONZA">55</div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20scuola%20Tognini%20%C2%B7%20Via%20Rimembranze%20snc%2C%20Vedano%20al%20Lambro" target="_blank" rel="noopener">Palestra scuola Tognini · Via Rimembranze snc, Vedano al Lambro</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Bar%20Biassoni%20Silvana%2C%20Via%20Santo%20Stefano%2047%2C%20Vedano%20al%20Lambro" target="_blank" rel="noopener">☕ Bar Biassoni Silvana · 12 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11980</span></div>
+    </div></article><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">8</span><span class="mon">nov</span><span class="time">19:30</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-bianca.png" alt="Stemma LISSONE BIANCA"></div>
+      <div class="team">LISSONE BIANCA</div>
+      <div class="score ro" aria-label="Punti LISSONE BIANCA">39</div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/gerardiana-monza.png" alt="Stemma GERARDIANA MONZA"></div>
+      <div class="team">GERARDIANA MONZA</div>
+      <div class="score ro win" aria-label="Punti GERARDIANA MONZA">53</div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzetto%20n.%201639%20%C2%B7%20Via%20Caravaggio%20snc%2C%20Lissone" target="_blank" rel="noopener">Palazzetto n. 1639 · Via Caravaggio snc, Lissone</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Il%20Barolino%2C%20Via%20Monza%2095%2C%20Lissone" target="_blank" rel="noopener">☕ Il Barolino · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11982</span></div>
+    </div></article></div></div><div class="gblock" data-g="5"><h3 class="gio">5ª giornata di andata · 15 novembre</h3><div class="list"><article class="match"><div class="date"><span class="dow">sab</span><span class="day">14</span><span class="mon">nov</span><span class="time">18:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/gerardiana-monza.png" alt="Stemma GERARDIANA MONZA"></div>
+      <div class="team">GERARDIANA MONZA</div>
+      <div class="score ro" aria-label="Punti GERARDIANA MONZA"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/eureka-monza.png" alt="Stemma EUREKA MONZA"></div>
+      <div class="team">EUREKA MONZA</div>
+      <div class="score ro" aria-label="Punti EUREKA MONZA"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20NEI%20%C2%B7%20Via%20Enrico%20Da%20Monza%207%2C%20Monza" target="_blank" rel="noopener">Palestra NEI · Via Enrico Da Monza 7, Monza</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Bar%20Caff%C3%A8%20Portici%2C%20Via%20Pesa%20del%20Lino%2C%20Monza" target="_blank" rel="noopener">☕ Bar Caffè Portici · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11983</span></div>
+    </div></article><article class="match"><div class="date"><span class="dow">dom</span><span class="day">15</span><span class="mon">nov</span><span class="time">10:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/sanfru-monza.png" alt="Stemma SANFRU MONZA"></div>
+      <div class="team">SANFRU MONZA</div>
+      <div class="score ro" aria-label="Punti SANFRU MONZA"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-bianca.png" alt="Stemma LISSONE BIANCA"></div>
+      <div class="team">LISSONE BIANCA</div>
+      <div class="score ro" aria-label="Punti LISSONE BIANCA"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20%C2%B7%20Via%20Marmolada%20(ang.%20via%20Monte%20Amiata)%2C%20Monza" target="_blank" rel="noopener">Palestra · Via Marmolada (ang. via Monte Amiata), Monza</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Al%20Dach%20Monza%20Caff%C3%A8%2C%20Via%20Pizzagalli%206%2C%20Monza" target="_blank" rel="noopener">☕ Al Dach Monza Caffè · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11984</span></div>
+    </div></article><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">15</span><span class="mon">nov</span><span class="time">17:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div>
+      <div class="team us">LISSONE BLU</div>
+      <div class="score ro" aria-label="Punti LISSONE BLU"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/mb501.png" alt="Stemma MB501"></div>
+      <div class="team">MB501</div>
+      <div class="score ro" aria-label="Punti MB501"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzetto%20n.%201639%20%C2%B7%20Via%20Caravaggio%20snc%2C%20Lissone" target="_blank" rel="noopener">Palazzetto n. 1639 · Via Caravaggio snc, Lissone</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Il%20Barolino%2C%20Via%20Monza%2095%2C%20Lissone" target="_blank" rel="noopener">☕ Il Barolino · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11985</span></div>
+    </div></article></div></div><div class="gblock" data-g="6"><h3 class="gio">1ª giornata di ritorno · 22 novembre</h3><div class="list"><article class="match"><div class="date"><span class="dow">sab</span><span class="day">21</span><span class="mon">nov</span><span class="time">14:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/mb501.png" alt="Stemma MB501"></div>
+      <div class="team">MB501</div>
+      <div class="score ro" aria-label="Punti MB501"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/eureka-monza.png" alt="Stemma EUREKA MONZA"></div>
+      <div class="team">EUREKA MONZA</div>
+      <div class="score ro" aria-label="Punti EUREKA MONZA"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20Scuola%20Media%20%C2%B7%20Via%20Baracca%2015%2C%20Sovico" target="_blank" rel="noopener">Palestra Scuola Media · Via Baracca 15, Sovico</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Galleria%20del%20Gusto%2C%20Piazza%20E.%20Frette%2C%20Sovico" target="_blank" rel="noopener">☕ Galleria del Gusto · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11986</span></div>
+    </div></article><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">22</span><span class="mon">nov</span><span class="time">15:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div>
+      <div class="team us">LISSONE BLU</div>
+      <div class="score ro" aria-label="Punti LISSONE BLU"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-bianca.png" alt="Stemma LISSONE BIANCA"></div>
+      <div class="team">LISSONE BIANCA</div>
+      <div class="score ro" aria-label="Punti LISSONE BIANCA"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzetto%20n.%201639%20%C2%B7%20Via%20Caravaggio%20snc%2C%20Lissone" target="_blank" rel="noopener">Palazzetto n. 1639 · Via Caravaggio snc, Lissone</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Il%20Barolino%2C%20Via%20Monza%2095%2C%20Lissone" target="_blank" rel="noopener">☕ Il Barolino · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11987</span></div>
+    </div></article><article class="match"><div class="date"><span class="dow">dom</span><span class="day">22</span><span class="mon">nov</span><span class="time">18:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/sanfru-monza.png" alt="Stemma SANFRU MONZA"></div>
+      <div class="team">SANFRU MONZA</div>
+      <div class="score ro" aria-label="Punti SANFRU MONZA"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/gerardiana-monza.png" alt="Stemma GERARDIANA MONZA"></div>
+      <div class="team">GERARDIANA MONZA</div>
+      <div class="score ro" aria-label="Punti GERARDIANA MONZA"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20%C2%B7%20Via%20Marmolada%20(ang.%20via%20Monte%20Amiata)%2C%20Monza" target="_blank" rel="noopener">Palestra · Via Marmolada (ang. via Monte Amiata), Monza</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Al%20Dach%20Monza%20Caff%C3%A8%2C%20Via%20Pizzagalli%206%2C%20Monza" target="_blank" rel="noopener">☕ Al Dach Monza Caffè · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11988</span></div>
+    </div></article></div></div><div class="gblock" data-g="7"><h3 class="gio">2ª giornata di ritorno · 29 novembre</h3><div class="list"><article class="match"><div class="date"><span class="dow">sab</span><span class="day">28</span><span class="mon">nov</span><span class="time">15:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/eureka-monza.png" alt="Stemma EUREKA MONZA"></div>
+      <div class="team">EUREKA MONZA</div>
+      <div class="score ro" aria-label="Punti EUREKA MONZA"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/sanfru-monza.png" alt="Stemma SANFRU MONZA"></div>
+      <div class="team">SANFRU MONZA</div>
+      <div class="score ro" aria-label="Punti SANFRU MONZA"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Scuola%20Walter%20Bonatti%20%C2%B7%20Via%20Baioni%2C%20Monza" target="_blank" rel="noopener">Scuola Walter Bonatti · Via Baioni, Monza</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Scanferlato%20Barcaf%C3%A9%2C%20Via%20A.%20Cederna%2029%2C%20Monza" target="_blank" rel="noopener">☕ Scanferlato Barcafé · 5 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11990</span></div>
+    </div></article><article class="match"><div class="date"><span class="dow">sab</span><span class="day">28</span><span class="mon">nov</span><span class="time">18:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/gerardiana-monza.png" alt="Stemma GERARDIANA MONZA"></div>
+      <div class="team">GERARDIANA MONZA</div>
+      <div class="score ro" aria-label="Punti GERARDIANA MONZA"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div>
+      <div class="team us">LISSONE BLU</div>
+      <div class="score ro" aria-label="Punti LISSONE BLU"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20NEI%20%C2%B7%20Via%20Enrico%20Da%20Monza%207%2C%20Monza" target="_blank" rel="noopener">Palestra NEI · Via Enrico Da Monza 7, Monza</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Bar%20Caff%C3%A8%20Portici%2C%20Via%20Pesa%20del%20Lino%2C%20Monza" target="_blank" rel="noopener">☕ Bar Caffè Portici · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11991</span></div>
+    </div></article><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">29</span><span class="mon">nov</span><span class="time">11:45</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-bianca.png" alt="Stemma LISSONE BIANCA"></div>
+      <div class="team">LISSONE BIANCA</div>
+      <div class="score ro" aria-label="Punti LISSONE BIANCA"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/mb501.png" alt="Stemma MB501"></div>
+      <div class="team">MB501</div>
+      <div class="score ro" aria-label="Punti MB501"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzetto%20n.%201639%20%C2%B7%20Via%20Caravaggio%20snc%2C%20Lissone" target="_blank" rel="noopener">Palazzetto n. 1639 · Via Caravaggio snc, Lissone</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Il%20Barolino%2C%20Via%20Monza%2095%2C%20Lissone" target="_blank" rel="noopener">☕ Il Barolino · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11989</span></div>
+    </div></article></div></div><div class="gblock" data-g="8"><h3 class="gio">3ª giornata di ritorno · 6 dicembre</h3><div class="list"><article class="match"><div class="date"><span class="dow">ven</span><span class="day">4</span><span class="mon">dic</span><span class="time">18:15</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/mb501.png" alt="Stemma MB501"></div>
+      <div class="team">MB501</div>
+      <div class="score ro" aria-label="Punti MB501"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/gerardiana-monza.png" alt="Stemma GERARDIANA MONZA"></div>
+      <div class="team">GERARDIANA MONZA</div>
+      <div class="score ro" aria-label="Punti GERARDIANA MONZA"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20scuola%20Tognini%20%C2%B7%20Via%20Rimembranze%20snc%2C%20Vedano%20al%20Lambro" target="_blank" rel="noopener">Palestra scuola Tognini · Via Rimembranze snc, Vedano al Lambro</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Bar%20Biassoni%20Silvana%2C%20Via%20Santo%20Stefano%2047%2C%20Vedano%20al%20Lambro" target="_blank" rel="noopener">☕ Bar Biassoni Silvana · 12 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11993</span></div>
+    </div></article><article class="match"><div class="date"><span class="dow">sab</span><span class="day">5</span><span class="mon">dic</span><span class="time">15:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/eureka-monza.png" alt="Stemma EUREKA MONZA"></div>
+      <div class="team">EUREKA MONZA</div>
+      <div class="score ro" aria-label="Punti EUREKA MONZA"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-bianca.png" alt="Stemma LISSONE BIANCA"></div>
+      <div class="team">LISSONE BIANCA</div>
+      <div class="score ro" aria-label="Punti LISSONE BIANCA"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Scuola%20Walter%20Bonatti%20%C2%B7%20Via%20Baioni%2C%20Monza" target="_blank" rel="noopener">Scuola Walter Bonatti · Via Baioni, Monza</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Scanferlato%20Barcaf%C3%A9%2C%20Via%20A.%20Cederna%2029%2C%20Monza" target="_blank" rel="noopener">☕ Scanferlato Barcafé · 5 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11994</span></div>
+    </div></article><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">6</span><span class="mon">dic</span><span class="time">15:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div>
+      <div class="team us">LISSONE BLU</div>
+      <div class="score ro" aria-label="Punti LISSONE BLU"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/sanfru-monza.png" alt="Stemma SANFRU MONZA"></div>
+      <div class="team">SANFRU MONZA</div>
+      <div class="score ro" aria-label="Punti SANFRU MONZA"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzetto%20n.%201639%20%C2%B7%20Via%20Caravaggio%20snc%2C%20Lissone" target="_blank" rel="noopener">Palazzetto n. 1639 · Via Caravaggio snc, Lissone</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Il%20Barolino%2C%20Via%20Monza%2095%2C%20Lissone" target="_blank" rel="noopener">☕ Il Barolino · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11992</span></div>
+    </div></article></div></div><div class="gblock" data-g="9"><h3 class="gio">4ª giornata di ritorno · 13 dicembre</h3><div class="list"><article class="match"><div class="date"><span class="dow">dom</span><span class="day">13</span><span class="mon">dic</span><span class="time">10:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/sanfru-monza.png" alt="Stemma SANFRU MONZA"></div>
+      <div class="team">SANFRU MONZA</div>
+      <div class="score ro" aria-label="Punti SANFRU MONZA"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/mb501.png" alt="Stemma MB501"></div>
+      <div class="team">MB501</div>
+      <div class="score ro" aria-label="Punti MB501"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20%C2%B7%20Via%20Marmolada%20(ang.%20via%20Monte%20Amiata)%2C%20Monza" target="_blank" rel="noopener">Palestra · Via Marmolada (ang. via Monte Amiata), Monza</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Al%20Dach%20Monza%20Caff%C3%A8%2C%20Via%20Pizzagalli%206%2C%20Monza" target="_blank" rel="noopener">☕ Al Dach Monza Caffè · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11995</span></div>
+    </div></article><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">13</span><span class="mon">dic</span><span class="time">15:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div>
+      <div class="team us">LISSONE BLU</div>
+      <div class="score ro" aria-label="Punti LISSONE BLU"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/eureka-monza.png" alt="Stemma EUREKA MONZA"></div>
+      <div class="team">EUREKA MONZA</div>
+      <div class="score ro" aria-label="Punti EUREKA MONZA"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzetto%20n.%201639%20%C2%B7%20Via%20Caravaggio%20snc%2C%20Lissone" target="_blank" rel="noopener">Palazzetto n. 1639 · Via Caravaggio snc, Lissone</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Il%20Barolino%2C%20Via%20Monza%2095%2C%20Lissone" target="_blank" rel="noopener">☕ Il Barolino · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11997</span></div>
+    </div></article><article class="match"><div class="date"><span class="dow">dom</span><span class="day">13</span><span class="mon">dic</span><span class="time">18:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/gerardiana-monza.png" alt="Stemma GERARDIANA MONZA"></div>
+      <div class="team">GERARDIANA MONZA</div>
+      <div class="score ro" aria-label="Punti GERARDIANA MONZA"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-bianca.png" alt="Stemma LISSONE BIANCA"></div>
+      <div class="team">LISSONE BIANCA</div>
+      <div class="score ro" aria-label="Punti LISSONE BIANCA"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20NEI%20%C2%B7%20Via%20Enrico%20Da%20Monza%207%2C%20Monza" target="_blank" rel="noopener">Palestra NEI · Via Enrico Da Monza 7, Monza</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Bar%20Caff%C3%A8%20Portici%2C%20Via%20Pesa%20del%20Lino%2C%20Monza" target="_blank" rel="noopener">☕ Bar Caffè Portici · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11996</span></div>
+    </div></article></div></div><div class="gblock" data-g="10"><h3 class="gio">5ª giornata di ritorno · 20 dicembre</h3><div class="list"><article class="match"><div class="date"><span class="dow">sab</span><span class="day">19</span><span class="mon">dic</span><span class="time">15:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/eureka-monza.png" alt="Stemma EUREKA MONZA"></div>
+      <div class="team">EUREKA MONZA</div>
+      <div class="score ro" aria-label="Punti EUREKA MONZA"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/gerardiana-monza.png" alt="Stemma GERARDIANA MONZA"></div>
+      <div class="team">GERARDIANA MONZA</div>
+      <div class="score ro" aria-label="Punti GERARDIANA MONZA"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Scuola%20Walter%20Bonatti%20%C2%B7%20Via%20Baioni%2C%20Monza" target="_blank" rel="noopener">Scuola Walter Bonatti · Via Baioni, Monza</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Scanferlato%20Barcaf%C3%A9%2C%20Via%20A.%20Cederna%2029%2C%20Monza" target="_blank" rel="noopener">☕ Scanferlato Barcafé · 5 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 12000</span></div>
+    </div></article><article class="match"><div class="date"><span class="dow">sab</span><span class="day">19</span><span class="mon">dic</span><span class="time">16:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/mb501.png" alt="Stemma MB501"></div>
+      <div class="team">MB501</div>
+      <div class="score ro" aria-label="Punti MB501"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-blu.png" alt="Stemma LISSONE BLU"></div>
+      <div class="team us">LISSONE BLU</div>
+      <div class="score ro" aria-label="Punti LISSONE BLU"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palestra%20Scuola%20Media%20%C2%B7%20Via%20Baracca%2015%2C%20Sovico" target="_blank" rel="noopener">Palestra Scuola Media · Via Baracca 15, Sovico</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Galleria%20del%20Gusto%2C%20Piazza%20E.%20Frette%2C%20Sovico" target="_blank" rel="noopener">☕ Galleria del Gusto · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11998</span></div>
+    </div></article><article class="match home"><div class="date"><span class="dow">dom</span><span class="day">20</span><span class="mon">dic</span><span class="time">15:00</span></div>
+    <div class="body">
+      
+    <div class="row">
+      <div class="crest ro"><img src="loghi/lissone-bianca.png" alt="Stemma LISSONE BIANCA"></div>
+      <div class="team">LISSONE BIANCA</div>
+      <div class="score ro" aria-label="Punti LISSONE BIANCA"></div>
+    </div>
+    <div class="row">
+      <div class="crest ro"><img src="loghi/sanfru-monza.png" alt="Stemma SANFRU MONZA"></div>
+      <div class="team">SANFRU MONZA</div>
+      <div class="score ro" aria-label="Punti SANFRU MONZA"></div>
+    </div>
+      <div class="foot">
+        
+        <a class="maploc" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzetto%20n.%201639%20%C2%B7%20Via%20Caravaggio%20snc%2C%20Lissone" target="_blank" rel="noopener">Palazzetto n. 1639 · Via Caravaggio snc, Lissone</a>
+        <a class="maploc bar" href="https://www.google.com/maps/search/?api=1&amp;query=Il%20Barolino%2C%20Via%20Monza%2095%2C%20Lissone" target="_blank" rel="noopener">☕ Il Barolino · 4 min a piedi</a>
+        
+        
+        
+        
+      </div>
+      
+      <div class="foot" style="margin-top:2px"><span>Gara 11999</span></div>
+    </div></article></div></div></div>
+    <p class="src" id="src">Fonte: FIP · Under 13 Maschile Regionale, Qualificazione · aggiornato al 14 novembre 2026, 16:00</p>
   </section>
 
   <section class="view" id="allenamenti">
@@ -966,7 +1715,7 @@ const GARE = [
  }
 ];
 const GIORNATA_DATA = {"1": "2026-10-18", "2": "2026-10-25", "3": "2026-11-01", "4": "2026-11-08", "5": "2026-11-15", "6": "2026-11-22", "7": "2026-11-29", "8": "2026-12-06", "9": "2026-12-13", "10": "2026-12-20"};
-const AGGIORNATO = "12 novembre 2026, 19:38";
+const AGGIORNATO = "14 novembre 2026, 16:00";
 /* Loghi (facoltativo): cartella "loghi" accanto a index.html, es. 'LISSONE BLU': 'loghi/lissone-blu.png' */
 const LOGHI = {
   'LISSONE BLU': 'loghi/lissone-blu.png',
@@ -1229,6 +1978,17 @@ rows.forEach((t,i)=>{
     <td class="pt"><span class="ptpill">${t.pt}</span></td>`;
   cb.appendChild(tr);
 });
+
+/* ---------- Prossima fase (Silver/Bronze) ---------- */
+(function(){
+  const posBlu=rows.findIndex(t=>t.n==='LISSONE BLU')+1;
+  if(!posBlu)return;
+  const silver=posBlu<=3;
+  const zonaHtml=silver?'<span class="zona-silver">Silver</span>':'<span class="zona-bronze">Bronze</span>';
+  document.getElementById('nextPhaseZona').innerHTML=
+    `Al momento siamo <b>${posBlu}°</b> in classifica: se la qualificazione finisse oggi saremmo in zona ${zonaHtml} (1°-3° posto Silver, 4°-6° Bronze). Aggiornato da solo a ogni giornata.`;
+  document.getElementById('nextPhase').hidden=false;
+})();
 
 /* ---------- Risultati e gare del girone, giornata per giornata ---------- */
 const lab=k=>k<=5?`${k}ª giornata di andata`:`${k-5}ª giornata di ritorno`;
