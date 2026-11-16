@@ -134,17 +134,6 @@
   },
   {
    "g": 5,
-   "n": 11983,
-   "a": "GERARDIANA MONZA",
-   "b": "EUREKA MONZA",
-   "d": "2026-11-14",
-   "t": "18:00",
-   "pa": 92,
-   "pb": 33,
-   "v": "Palestra NEI · Via Enrico Da Monza 7, Monza"
-  },
-  {
-   "g": 5,
    "n": 11984,
    "a": "SANFRU MONZA",
    "b": "LISSONE BIANCA",
@@ -164,6 +153,17 @@
    "pa": 67,
    "pb": 47,
    "v": "CASA"
+  },
+  {
+   "g": 5,
+   "n": 11983,
+   "a": "GERARDIANA MONZA",
+   "b": "EUREKA MONZA",
+   "d": "2026-11-15",
+   "t": "18:00",
+   "pa": 92,
+   "pb": 33,
+   "v": "Palestra NEI · Via Enrico Da Monza 7, Monza"
   },
   {
    "g": 6,
@@ -331,5 +331,5 @@
    "v": "CASA"
   }
  ],
- "aggiornato": "15 novembre 2026, 21:06"
+ "aggiornato": "16 novembre 2026, 21:42"
 }
