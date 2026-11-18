@@ -178,17 +178,6 @@
   },
   {
    "g": 6,
-   "n": 11987,
-   "a": "LISSONE BLU",
-   "b": "LISSONE BIANCA",
-   "d": "2026-11-22",
-   "t": "15:00",
-   "pa": null,
-   "pb": null,
-   "v": "CASA"
-  },
-  {
-   "g": 6,
    "n": 11988,
    "a": "SANFRU MONZA",
    "b": "GERARDIANA MONZA",
@@ -197,6 +186,17 @@
    "pa": null,
    "pb": null,
    "v": "Palestra · Via Marmolada (ang. via Monte Amiata), Monza"
+  },
+  {
+   "g": 6,
+   "n": 11987,
+   "a": "LISSONE BLU",
+   "b": "LISSONE BIANCA",
+   "d": "2026-11-22",
+   "t": "19:15",
+   "pa": null,
+   "pb": null,
+   "v": "CASA"
   },
   {
    "g": 7,
@@ -331,5 +331,5 @@
    "v": "CASA"
   }
  ],
- "aggiornato": "16 novembre 2026, 21:42"
+ "aggiornato": "18 novembre 2026, 20:09"
 }
