@@ -170,10 +170,10 @@
    "n": 11986,
    "a": "MB501",
    "b": "EUREKA MONZA",
-   "d": "2026-11-21",
+   "d": "2026-11-22",
    "t": "14:00",
-   "pa": null,
-   "pb": null,
+   "pa": 61,
+   "pb": 37,
    "v": "Palestra Scuola Media · Via Baracca 15, Sovico"
   },
   {
@@ -183,8 +183,8 @@
    "b": "GERARDIANA MONZA",
    "d": "2026-11-22",
    "t": "18:00",
-   "pa": null,
-   "pb": null,
+   "pa": 46,
+   "pb": 75,
    "v": "Palestra · Via Marmolada (ang. via Monte Amiata), Monza"
   },
   {
@@ -194,8 +194,8 @@
    "b": "LISSONE BIANCA",
    "d": "2026-11-22",
    "t": "19:15",
-   "pa": null,
-   "pb": null,
+   "pa": 55,
+   "pb": 58,
    "v": "CASA"
   },
   {
@@ -331,5 +331,5 @@
    "v": "CASA"
   }
  ],
- "aggiornato": "18 novembre 2026, 20:09"
+ "aggiornato": "24 novembre 2026, 21:54"
 }
